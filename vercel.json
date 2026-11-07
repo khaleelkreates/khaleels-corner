@@ -1,1 +1,1 @@
-{"buildCommand":"npm run build","outputDirectory":"dist","framework":null,"trailingSlash":false}
+{"buildCommand":"npm run build","installCommand":"npm --prefix cms install --no-audit --no-fund","outputDirectory":"dist","framework":null,"trailingSlash":false,"rewrites":[{"source":"/admin","destination":"/admin/index.html"},{"source":"/admin/:path*","destination":"/admin/index.html"}],"headers":[{"source":"/admin/:path*","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]}]}

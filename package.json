@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "Khaleel's personal journal, with a Finesse Labs coming-soon page",
-  "scripts": {"build": "node build.mjs", "test": "node verify.mjs", "preview": "node serve.mjs"},
-  "engines": {"node": ">=20"}
+  "scripts": {"build": "node build.mjs && node build-admin.mjs", "test": "node verify.mjs && node verify-cms.mjs", "preview": "node serve.mjs", "cms:dev": "npm --prefix cms run dev", "cms:build": "npm --prefix cms run build"},
+  "engines": {"node": "22.x"}
 }

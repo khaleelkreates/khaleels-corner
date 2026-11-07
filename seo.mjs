@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import site from './site-config.json' with {type:'json'};
 const xml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 const json=s=>JSON.stringify(s).replace(/</g,'\\u003c');
 /** Add domain-dependent discovery files without inventing a production URL. */
 export function enhanceOutput({out,posts}){
  const preview=process.env.VERCEL_ENV==='preview';
- const origin=process.env.SITE_URL?.replace(/\/$/,'');
+ const origin=(process.env.SITE_URL||site.siteUrl)?.replace(/\/$/,'');
  if(origin){const u=new URL(origin);if(!['http:','https:'].includes(u.protocol)||u.username||u.password||u.search||u.hash||u.pathname!=='/')throw Error('SITE_URL must be your site origin, without a path, query or credentials.');}
  const head=(file,extra)=>{const p=path.join(out,file);fs.writeFileSync(p,fs.readFileSync(p,'utf8').replace('</head>',extra+'</head>'))};
  if(preview){for(const rel of ['index.html','finesse/index.html',...posts.map(p=>`posts/${p.slug}.html`)])head(rel,'<meta name="robots" content="noindex,nofollow">');}
@@ -18,6 +19,6 @@ export function enhanceOutput({out,posts}){
  fs.writeFileSync(path.join(out,'feed.xml'),rss);
  const feed=`<link rel="alternate" type="application/rss+xml" title="Khaleel’s Corner" href="${xml(origin)}/feed.xml">`;
  head('index.html',feed+`<script type="application/ld+json">${json({'@context':'https://schema.org','@type':'Blog',name:'Khaleel’s Corner',url:origin+'/',author:{'@type':'Person',name:'Khaleel'}})}</script>`);
- for(const p of posts){const url=`${origin}/posts/${p.slug}.html`;const schema={'@context':'https://schema.org','@type':'BlogPosting',headline:p.title,description:p.excerpt||p.body.split('\n')[0],articleSection:p.category,inLanguage:'en',url,mainEntityOfPage:{'@type':'WebPage','@id':url},author:{'@type':'Person',name:'Khaleel'},publisher:{'@type':'Organization',name:'Khaleel’s Corner'},...(p.date?{datePublished:p.date}:{}),...(p.image?{image:[`${origin}/${p.image}`]}:{})};head(`posts/${p.slug}.html`,feed+`<script type="application/ld+json">${json(schema)}</script>`)}
+ for(const p of posts){const url=`${origin}/posts/${p.slug}.html`;const schema={'@context':'https://schema.org','@type':'BlogPosting',headline:p.title,description:p.excerpt||p.body.split('\n')[0],articleSection:p.category,inLanguage:'en',url,mainEntityOfPage:{'@type':'WebPage','@id':url},author:{'@type':'Person',name:'Khaleel'},publisher:{'@type':'Organization',name:'Khaleel’s Corner'},...(p.date?{datePublished:p.date}:{}),...(p.coverImageUrl?{image:[p.coverImageUrl]}:p.image?{image:[`${origin}/${p.image}`]}:{})};head(`posts/${p.slug}.html`,feed+`<script type="application/ld+json">${json(schema)}</script>`)}
  console.log('SEO: generated sitemap.xml, robots.txt, feed.xml and Blog/BlogPosting structured data.');
 }
