@@ -1,0 +1,8 @@
+{
+  "name": "khaleels-corner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Khaleel's personal journal, with a Finesse Labs coming-soon page",
+  "scripts": {"build": "node build.mjs", "test": "node verify.mjs", "preview": "node serve.mjs"},
+  "engines": {"node": ">=20"}
+}

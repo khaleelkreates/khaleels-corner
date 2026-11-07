@@ -1,0 +1,8 @@
+[
+ {"name":"Kenny","role":"The young accountant","description":"Good with the numbers. Learning to find his voice in a room full of opinions.","background":"#d2d6be","outfit":"#f4edcf","skin":"#8e5437"},
+ {"name":"Tobi","role":"The business guy","description":"Always sees the next deal. The details usually catch up with him later.","background":"#e2c376","outfit":"#dba34b","skin":"#713f2d"},
+ {"name":"Madam CFO","role":"The finance leader","description":"Believes in growth. Has a few questions about how everyone plans to pay for it.","background":"#b8c9bc","outfit":"#214f43","skin":"#965637"},
+ {"name":"The Auditor","role":"The evidence person","description":"A calm voice, a sharp eye, and one more document to ask for.","background":"#b9c8c9","outfit":"#64787d","skin":"#643d2c"},
+ {"name":"The Entrepreneur","role":"The ambitious owner","description":"Building something from an idea. Discovering what comes with keeping it alive.","background":"#d5b89f","outfit":"#b96946","skin":"#995e3d"},
+ {"name":"The Intern","role":"The curious beginner","description":"Asks the simple question everyone else was thinking. Someone has to.","background":"#dadbb6","outfit":"#b8c4a0","skin":"#704631"}
+]
