@@ -1,0 +1,100 @@
+{
+  "at-least-theres-this": {
+    "image": "images/covers/at-least-theres-this.webp",
+    "alt": "Hands raising cups of coffee together",
+    "source": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "beautiful-rubbish": {
+    "image": "images/covers/beautiful-rubbish.webp",
+    "alt": "Yellow blossoms against a clear blue sky",
+    "source": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "let-it-go": {
+    "image": "images/covers/let-it-go.webp",
+    "alt": "Waves washing onto an open shoreline",
+    "source": "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "back-to-life": {
+    "image": "images/covers/back-to-life.webp",
+    "alt": "Sunlight falling through a green forest",
+    "source": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "locked-in-kpa": {
+    "image": "images/covers/locked-in-kpa.webp",
+    "alt": "A laptop, cup and notebook on a wooden desk",
+    "source": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "not-everything-needs-an-audience": {
+    "image": "images/covers/not-everything-needs-an-audience.webp",
+    "alt": "A fountain pen writing on a lined page",
+    "source": "https://images.unsplash.com/photo-1455390582262-044cdead277a?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "no-reward-for-suffer-head": {
+    "image": "images/covers/no-reward-for-suffer-head.webp",
+    "alt": "A shared working table with laptops and notebooks",
+    "source": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "time-leaves-clues": {
+    "image": "images/covers/time-leaves-clues.webp",
+    "alt": "Sunrise over a layered mountain horizon",
+    "source": "https://images.unsplash.com/photo-1500534623283-312aade485b7?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "the-girl-in-my-dreams": {
+    "image": "images/covers/the-girl-in-my-dreams.webp",
+    "alt": "A dreamlike sunrise over a misty landscape",
+    "source": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "life-don-already-start": {
+    "image": "images/covers/life-don-already-start.webp",
+    "alt": "Sunlit mountain peaks and a wide horizon",
+    "source": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "happiness-is-free": {
+    "image": "images/covers/happiness-is-free.webp",
+    "alt": "Golden light breaking over mountain ridges",
+    "source": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "que-sera": {
+    "image": "images/covers/que-sera.webp",
+    "alt": "A wooden cabin beside a lake beneath misty mountains",
+    "source": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
+  },
+  "small-amebo": {
+    "image": "images/covers/small-amebo.jpg",
+    "alt": "A yellow minibus travelling along a busy Lagos street",
+    "source": "https://images.pexels.com/photos/37837067/pexels-photo-37837067.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "credit": "Cover photograph · Pexels",
+    "license": "https://www.pexels.com/license/"
+  },
+  "love-for-lagos": {
+    "image": "images/covers/love-for-lagos.jpg",
+    "alt": "A yellow danfo bus on a Lagos street",
+    "source": "https://images.pexels.com/photos/37567064/pexels-photo-37567064.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "credit": "Cover photograph · Pexels",
+    "license": "https://www.pexels.com/license/"
+  }
+}
