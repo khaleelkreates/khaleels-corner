@@ -10,7 +10,7 @@ const root=path.dirname(fileURLToPath(import.meta.url)),out=path.join(root,'dist
 process.env.CONTENT_SOURCE='files';
 execFileSync(process.execPath,[path.join(root,'build.mjs')],{stdio:'inherit',env:{...process.env,CONTENT_SOURCE:'files'}});
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?walk(path.join(dir,x.name)):[path.join(dir,x.name)]);
-const files=walk(out),html=files.filter(f=>f.endsWith('.html'));
+const files=walk(out),html=files.filter(f=>f.endsWith('.html') && path.basename(f)!=='googlec1c3a100efe263ef.html');
 const decode=s=>s.replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&amp;/g,'&');
 let count=0;
 for(const file of html){const text=fs.readFileSync(file,'utf8');assert.ok(text.includes('<title>'));assert.ok(text.includes('name="description"'));for(const [,url]of text.matchAll(/(?:href|src)="([^"]+)"/g)){if(/^(?:https?:|#|\/)/.test(url))continue;const target=path.resolve(path.dirname(file),decode(url.split('#')[0]));assert.ok(target.startsWith(out+path.sep),`Link escaped output: ${url}`);assert.ok(fs.existsSync(target),`Missing link in ${file}: ${url}`)}assert.ok(!text.includes('Five million naira order'));assert.ok(!text.includes('reader-controls'));}

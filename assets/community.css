@@ -4,19 +4,29 @@
 .market-invite p,.market-join p{margin:0 0 .3rem}
 .market-invite>a,.market-contact,.story-comments button{display:inline-flex;min-height:44px;align-items:center;gap:.55rem;padding:.6rem .9rem;border-radius:999px;background:#234638;color:#fff;text-decoration:none;font:600 .9rem/1.3 system-ui}
 .market-icon{display:grid;place-items:center;width:3.2rem;height:3.2rem;background:#f8f4e9;border-radius:50%;color:#234638;flex:none}
-.market-page{max-width:1080px;margin:auto;padding:clamp(1rem,4vw,3rem)}
-.market-hero{padding:clamp(2rem,6vw,5rem) 0;color:#234638}
-.market-hero h1{font:normal clamp(3rem,9vw,6.5rem)/.95 Georgia,serif;letter-spacing:-.06em;margin:.35em 0}
-.market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1rem}
-.market-item{border:1px solid #d7d0c2;border-radius:16px;background:#fffdf7;padding:1.45rem;display:flex;flex-direction:column;align-items:flex-start}
-.market-item h2{font:normal 1.85rem/1.1 Georgia,serif;margin:.3rem 0}
-.market-item p{overflow-wrap:anywhere}.market-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:.5rem}
-.market-gallery{width:100%;display:flex;flex-wrap:wrap;gap:.65rem;margin:.2rem 0 1.1rem}
-.market-gallery-photo,.market-gallery-logo{display:grid;place-items:center;flex:1 1 135px;min-width:0;overflow:hidden;border-radius:12px;background:#f0ebe1}
-.market-gallery img{display:block;width:100%;height:clamp(160px,29vw,235px);object-fit:contain}
-.market-gallery-logo img{width:min(78%,180px);height:auto;aspect-ratio:1;border-radius:50%;margin:1rem}
-.market-gallery-photo:focus-visible{outline:3px solid #234638;outline-offset:3px}
+.market-page{max-width:1200px;margin:auto;padding:clamp(1rem,4vw,3rem)}
+.market-hero{margin:1.2rem 0 1.5rem;padding:clamp(1.5rem,5vw,3.5rem);border:1px solid #cad6ca;border-radius:22px;background:#e7eee3;color:#234638}
+.market-hero h1{font:normal clamp(2.6rem,8vw,5.5rem)/1 Georgia,serif;letter-spacing:-.055em;margin:.3em 0 .2em}
+.market-hero p{margin:0;font-size:clamp(1rem,2vw,1.15rem)}
+.market-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(1rem,2.5vw,1.5rem)}
+.market-item{min-width:0;display:flex;flex-direction:column;border:1px solid #d7d0c2;border-radius:18px;background:#fffdf7;box-shadow:0 4px 16px #2346380b}
+.market-details{flex:1;display:flex;flex-direction:column;padding:clamp(1rem,2.3vw,1.45rem)}
+.market-details .eyebrow{margin:0;color:#526957}
+.market-item h2{font:normal clamp(1.55rem,3vw,1.9rem)/1.1 Georgia,serif;margin:.4rem 0 .55rem}
+.market-item p{overflow-wrap:anywhere}
+.market-details>p:not(.eyebrow){margin:0 0 1.15rem;line-height:1.55}
+.market-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:.5rem}
+.market-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;padding:.65rem;border-radius:17px 17px 0 0;background:#efede4}
+.market-gallery[data-image-count="1"]{grid-template-columns:minmax(0,1fr)}
+.market-gallery-photo,.market-gallery-logo{position:relative;display:grid;place-items:center;aspect-ratio:1.2;min-width:0;border-radius:11px;background:#e4e6dc}
+.market-gallery img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;padding:.45rem}
+.market-gallery-logo img{inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(57%,155px);height:auto;aspect-ratio:1;border-radius:50%;padding:0}
+.market-expand{position:absolute;right:.5rem;bottom:.5rem;display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:#fffdf7;color:#234638}
+.market-gallery-photo:focus-visible,.market-contact:focus-visible{outline:3px solid #234638;outline-offset:3px}
 .market-join{margin:1.6rem 0 3rem}
+.market-join .market-contact{margin-top:.65rem}
+@media(min-width:620px){.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1020px){.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .story-comments{max-width:700px;margin:3rem auto;padding:1.5rem 0;border-top:1px solid #d7d0c2}
 .story-comments form:not([hidden]){display:grid;gap:.85rem}
 .story-comments label{display:grid;gap:.35rem;font-weight:600}.story-comments label span{font-weight:400}
