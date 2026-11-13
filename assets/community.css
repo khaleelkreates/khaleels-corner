@@ -37,3 +37,6 @@
 
 .story-cover img[data-uploaded-cover],.featured-cover img[data-uploaded-cover]{object-fit:contain;transform:none}
 .article-image img[data-uploaded-cover]{display:block;width:auto;max-width:100%;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain;margin-inline:auto}
+.story-comments .comment-reply{margin-inline-start:.6rem;background:transparent;color:#234638;text-decoration:underline}
+.story-comments button[hidden]{display:none}
+.comment-thread{margin:.3rem 0 0 clamp(.6rem,4vw,1.5rem);padding-inline-start:.8rem;border-inline-start:2px solid #d7d0c2}

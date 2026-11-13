@@ -21,6 +21,7 @@ export const storyComment = defineType({
  name:'storyComment',title:'Story comment',type:'document',
  fields:[
   defineField({name:'story',title:'Story address',type:'string',readOnly:true}),
+  defineField({name:'parentId',title:'Reply to comment',type:'string',readOnly:true}),
   defineField({name:'message',type:'text',readOnly:true}),
   defineField({name:'signature',type:'string',readOnly:true}),
   defineField({name:'hidden',title:'Hide comment',type:'boolean',initialValue:false}),
