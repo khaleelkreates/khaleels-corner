@@ -34,3 +34,6 @@
 .reaction-bar button{min-height:44px;padding:.55rem .85rem;border:1px solid #bac9b8;border-radius:999px;background:#fffdf7;color:#234638;font:600 .9rem system-ui;cursor:pointer}
 .reaction-bar button[aria-pressed="true"]{background:#234638;color:#fff}
 .reaction-bar [data-count]{margin-inline-start:.3rem;font-variant-numeric:tabular-nums}
+
+.story-cover img[data-uploaded-cover],.featured-cover img[data-uploaded-cover]{object-fit:contain;transform:none}
+.article-image img[data-uploaded-cover]{display:block;width:auto;max-width:100%;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain;margin-inline:auto}
