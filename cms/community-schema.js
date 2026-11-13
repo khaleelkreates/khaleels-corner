@@ -12,6 +12,7 @@ export const marketListing = defineType({
   ]}],validation:r=>r.max(8)}),
   defineField({name:'whatsapp',title:'WhatsApp number (international digits)',type:'string',validation:r=>r.regex(/^\d{8,15}$/)}),
   defineField({name:'instagram',title:'Instagram username',type:'string',validation:r=>r.regex(/^[\w.]{1,30}$/)}),
+  defineField({name:'email',title:'Contact email',type:'email'}),
   defineField({name:'order',type:'number',initialValue:0}),
   defineField({name:'hidden',title:'Hide listing',type:'boolean',initialValue:false}),
  ],
