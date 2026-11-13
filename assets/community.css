@@ -1,0 +1,26 @@
+.market-invite,.market-join{background:#e7eee3;color:#17382e;border:1px solid #cbd8c8;border-radius:18px;padding:clamp(1.2rem,4vw,2.4rem)}
+.market-invite{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin:2.5rem auto;max-width:760px}
+.market-invite h2,.market-join h2,.story-comments h2{font:normal clamp(1.6rem,4vw,2.1rem)/1.1 Georgia,serif;margin:0 0 .45rem}
+.market-invite p,.market-join p{margin:0 0 .3rem}
+.market-invite>a,.market-contact,.story-comments button{display:inline-flex;min-height:44px;align-items:center;gap:.55rem;padding:.6rem .9rem;border-radius:999px;background:#234638;color:#fff;text-decoration:none;font:600 .9rem/1.3 system-ui}
+.market-icon{display:grid;place-items:center;width:3.2rem;height:3.2rem;background:#f8f4e9;border-radius:50%;color:#234638;flex:none}
+.market-page{max-width:1080px;margin:auto;padding:clamp(1rem,4vw,3rem)}
+.market-hero{padding:clamp(2rem,6vw,5rem) 0;color:#234638}
+.market-hero h1{font:normal clamp(3rem,9vw,6.5rem)/.95 Georgia,serif;letter-spacing:-.06em;margin:.35em 0}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1rem}
+.market-item{border:1px solid #d7d0c2;border-radius:16px;background:#fffdf7;padding:1.45rem;display:flex;flex-direction:column;align-items:flex-start}
+.market-item h2{font:normal 1.85rem/1.1 Georgia,serif;margin:.3rem 0}
+.market-item p{overflow-wrap:anywhere}.market-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:.5rem}
+.market-join{margin:1.6rem 0 3rem}
+.story-comments{max-width:700px;margin:3rem auto;padding:1.5rem 0;border-top:1px solid #d7d0c2}
+.story-comments form:not([hidden]){display:grid;gap:.85rem}
+.story-comments label{display:grid;gap:.35rem;font-weight:600}.story-comments label span{font-weight:400}
+.story-comments input,.story-comments textarea{font:inherit;width:100%;padding:.75rem;border:1px solid #847e71;border-radius:8px;background:#fffdf7;color:#262822}.story-comments textarea{resize:vertical}
+.story-comments button{justify-self:start;border:0;cursor:pointer}.story-comments button:disabled{opacity:.7}
+.comment-list{list-style:none;padding:0}.comment-list li{border-top:1px solid #ddd5ca;padding:1rem 0}
+.comment-list p{white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 .5rem}
+.comment-signature{display:inline-block;max-width:100%;overflow-wrap:anywhere;color:#365447;font:italic 1.2rem Georgia,serif}
+.prose :is(ul,ol){padding-inline-start:1.5em}.prose blockquote{margin-inline:0;border-inline-start:3px solid #9b583e;padding-inline-start:1rem}.prose a{text-decoration:underline}
+.share-bar .whatsapp-share:not([hidden]){display:inline-flex;align-items:center;gap:.4rem}
+@media(prefers-reduced-motion:no-preference){.comment-signature.reveal{animation:ink-in .6s ease-out both}@keyframes ink-in{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}}
+@supports(animation-timeline:view()){ @media(prefers-reduced-motion:no-preference){.market-invite{animation:market-in linear both;animation-timeline:view();animation-range:entry 5% entry 65%}@keyframes market-in{from{opacity:.45;transform:translateY(14px)}to{opacity:1;transform:none}}}}

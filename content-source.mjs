@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import site from './site-config.json' with {type:'json'};
+import {plainArticleText} from './reading-text.mjs';
 export const API_VERSION='2025-02-19';
 export function loadLocalPosts(root){
  const posts=[];
@@ -14,6 +15,7 @@ export function loadLocalPosts(root){
  return posts;
 }
 export function normalizePost(p,label='CMS article'){
+ if(Array.isArray(p.richBody))p={...p,body:plainArticleText(p.richBody)};
  for(const key of ['title','category','body'])if(typeof p[key]!=='string'||!p[key].trim())throw Error(`Missing ${key}: ${label}`);
  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug))throw Error(`Invalid article slug: ${label}`);
  if(p.date&&(!/^\d{4}-\d{2}-\d{2}$/.test(p.date)||!Number.isFinite(Date.parse(p.date+'T12:00:00Z'))||new Date(p.date+'T12:00:00Z').toISOString().slice(0,10)!==p.date))throw Error(`Invalid article date: ${label}`);
@@ -28,7 +30,7 @@ export function sanitySettings(env=process.env){
 }
 export async function loadSanityPosts({env=process.env,fetchImpl=fetch}={}){
  const {projectId,dataset}=sanitySettings(env);
- const query=`*[_type == "reflection" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,category,excerpt,body,date,order,featured,"coverImageUrl":coverImage.asset->url,"imageAlt":coverImage.alt,"imageCaption":coverImage.caption}`;
+ const query=`*[_type == "reflection" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,category,excerpt,body,richBody,date,order,featured,"coverImageUrl":coverImage.asset->url,"imageAlt":coverImage.alt,"imageCaption":coverImage.caption}`;
  const url=new URL(`https://${projectId}.api.sanity.io/v${API_VERSION}/data/query/${dataset}`);url.searchParams.set('query',query);url.searchParams.set('perspective','published');
  // Anonymous API reads cannot see drafts. Never pass a draft-reading token to the site build.
  const response=await fetchImpl(url,{signal:AbortSignal.timeout(30000),cache:'no-store'});
