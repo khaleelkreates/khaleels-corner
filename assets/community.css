@@ -11,6 +11,11 @@
 .market-item{border:1px solid #d7d0c2;border-radius:16px;background:#fffdf7;padding:1.45rem;display:flex;flex-direction:column;align-items:flex-start}
 .market-item h2{font:normal 1.85rem/1.1 Georgia,serif;margin:.3rem 0}
 .market-item p{overflow-wrap:anywhere}.market-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:.5rem}
+.market-gallery{width:100%;display:flex;flex-wrap:wrap;gap:.65rem;margin:.2rem 0 1.1rem}
+.market-gallery-photo,.market-gallery-logo{display:grid;place-items:center;flex:1 1 135px;min-width:0;overflow:hidden;border-radius:12px;background:#f0ebe1}
+.market-gallery img{display:block;width:100%;height:clamp(160px,29vw,235px);object-fit:contain}
+.market-gallery-logo img{width:min(78%,180px);height:auto;aspect-ratio:1;border-radius:50%;margin:1rem}
+.market-gallery-photo:focus-visible{outline:3px solid #234638;outline-offset:3px}
 .market-join{margin:1.6rem 0 3rem}
 .story-comments{max-width:700px;margin:3rem auto;padding:1.5rem 0;border-top:1px solid #d7d0c2}
 .story-comments form:not([hidden]){display:grid;gap:.85rem}

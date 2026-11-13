@@ -6,6 +6,10 @@ export const marketListing = defineType({
   defineField({name:'name',type:'string',validation:r=>r.required().max(100)}),
   defineField({name:'category',type:'string',validation:r=>r.required().max(60)}),
   defineField({name:'description',type:'text',rows:4,validation:r=>r.required().max(600)}),
+  defineField({name:'gallery',title:'Gallery',type:'array',of:[{type:'image',fields:[
+   defineField({name:'alt',title:'Image description',type:'string',validation:r=>r.required()}),
+   defineField({name:'profileScreenshot',title:'Show only the logo in this Instagram screenshot',type:'boolean'}),
+  ]}],validation:r=>r.max(8)}),
   defineField({name:'whatsapp',title:'WhatsApp number (international digits)',type:'string',validation:r=>r.regex(/^\d{8,15}$/)}),
   defineField({name:'instagram',title:'Instagram username',type:'string',validation:r=>r.regex(/^[\w.]{1,30}$/)}),
   defineField({name:'order',type:'number',initialValue:0}),
