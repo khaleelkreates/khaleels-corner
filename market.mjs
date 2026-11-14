@@ -27,7 +27,7 @@ function galleryMarkup(gallery=[]) {
 }
 
 export function marketInvite(base) {
- return `<aside class="market-invite"><span class="market-icon">${icon('shop')}</span><div><h2>Wanna check out the market?</h2><p>Meet the people behind these small businesses.</p></div><a href="${base}market.html">Visit the Corner Market <span aria-hidden="true">↗</span></a></aside>`;
+ return `<aside class="market-invite"><a class="market-roll" href="${base}market.html"><span class="market-roll-icon">${icon('shop')}</span><span>Visit the Corner Market <span aria-hidden="true">↗</span></span></a></aside>`;
 }
 export function marketPage(listings, ownerWhatsApp='2349060379294') {
  const addLink = /^\d{8,15}$/.test(ownerWhatsApp||'') ? external('https://wa.me/'+ownerWhatsApp+'?text='+encodeURIComponent("Hi Khaleel! I’d like to add my business to the Corner Market."),'Ask Khaleel on WhatsApp','whatsapp') : '';
