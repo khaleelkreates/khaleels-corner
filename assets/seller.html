@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Seller access — Khaleel’s Corner</title>
+  <link rel="stylesheet" href="seller.css">
+  <script src="seller.js" defer></script>
+</head>
+<body>
+<main>
+  <a href="market.html">← Corner Market</a>
+  <h1>Your market workspace.</h1>
+  <form id="login">
+    <label>Seller or administrator access code
+      <input name="code" required maxlength="40" autocomplete="off" spellcheck="false" placeholder="BUSINESS-XXXX-XXXX-XXXX">
+    </label>
+    <button>Enter workspace</button>
+    <p>Lost your code? Contact the market admin through your known business contact.</p>
+    <a href="https://wa.me/2349060379294?text=Hi%20Khaleel%2C%20I%20need%20help%20recovering%20my%20market%20access%20code.">Contact Khaleel on WhatsApp</a>
+  </form>
+  <p id="status" role="status"></p>
+  <section id="workspace" hidden>
+    <h2 id="welcome"></h2>
+    <button id="logout" type="button">Sign out</button>
+    <p id="seller-note" hidden>Your catalogue allowance is five items. Catalogue editing will open after the shop setup is complete.</p>
+    <section id="management" hidden>
+      <h2>Seller access</h2>
+      <p>Confirm a recovery request through the business’s known contact before issuing a new code. Resetting signs out the old sessions.</p>
+      <p id="issued" hidden></p>
+      <ul id="accounts"></ul>
+      <form id="create" hidden>
+        <h2>Issue access</h2>
+        <label>Account label<input name="label" required maxlength="100"></label>
+        <label>Role<select name="role"><option value="seller">Seller</option><option value="manager">Reset administrator</option></select></label>
+        <label>Business<select name="businessId" id="businesses"></select></label>
+        <button>Create account and code</button>
+      </form>
+    </section>
+  </section>
+</main>
+</body>
+</html>
