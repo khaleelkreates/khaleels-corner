@@ -62,6 +62,7 @@ async function show(data) {
   document.querySelector('#seller-note').hidden = manager;
   document.querySelector('#create').hidden = account.role !== 'owner';
   if (manager) await directory();
+  window.dispatchEvent(new CustomEvent('market-account',{detail:account}));
 }
 login.addEventListener('submit', async event => {
   event.preventDefault();
@@ -71,6 +72,7 @@ login.addEventListener('submit', async event => {
   finally {button.disabled = false;}
 });
 document.querySelector('#logout').addEventListener('click', async () => {
+  if(window.catalogueDirty && !confirm('Leave without saving your catalogue changes?')) return;
   try {await request({action:'logout'});location.reload();}
   catch(error) {status.textContent = error.message;}
 });

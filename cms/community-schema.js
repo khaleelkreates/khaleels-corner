@@ -15,6 +15,7 @@ export const marketListing = defineType({
   defineField({name:'email',title:'Contact email',type:'email'}),
   defineField({name:'order',type:'number',initialValue:0}),
   defineField({name:'hidden',title:'Hide listing',type:'boolean',initialValue:false}),
+  defineField({name:'cataloguePublishedAt',type:'datetime',hidden:true,readOnly:true}),
  ],
 });
 export const storyComment = defineType({

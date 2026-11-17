@@ -16,8 +16,13 @@ const icons = {
 export const icon = name => `<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[name]}</svg>`;
 const external = (href,label,kind) => `<a class="market-contact" href="${esc(href)}" target="_blank" rel="noopener noreferrer">${icon(kind)} ${esc(label)}</a>`;
 
+function safeMarketImage(value) {
+ if(/^https:\/\/cdn\.sanity\.io\/images\/[\w/.-]+$/.test(value||'')) return true;
+ const origin=process.env.MARKET_SUPABASE_URL?.trim().replace(/\/$/,'');
+ return !!origin && typeof value==='string' && value.startsWith(origin+'/storage/v1/object/public/corner-market/') && /^[\w/.-]+$/.test(value.slice((origin+'/storage/v1/object/public/corner-market/').length));
+}
 function galleryMarkup(gallery=[]) {
- const images=(gallery||[]).filter(image=>/^https:\/\/cdn\.sanity\.io\/images\/[\w/.-]+$/.test(image?.url||''));
+ const images=(gallery||[]).filter(image=>safeMarketImage(image?.url));
  if(!images.length) return '';
  return `<div class="market-gallery" data-image-count="${images.length}">${images.map(({url,alt,profileScreenshot})=>{
   const description=esc(alt||'Business gallery image');
@@ -31,7 +36,7 @@ export function marketInvite(base) {
 }
 export function marketPage(listings, ownerWhatsApp='2349060379294') {
  const addLink = /^\d{8,15}$/.test(ownerWhatsApp||'') ? external('https://wa.me/'+ownerWhatsApp+'?text='+encodeURIComponent("Hi Khaleel! I’d like to add my business to the Corner Market."),'Ask Khaleel on WhatsApp','whatsapp') : '';
- return `<main class="market-page" id="main"><a class="back-link" href="index.html#journal">← Back to the notebook</a><section class="market-hero"><span class="market-icon">${icon('shop')}</span><h1>The Corner <em>Market.</em></h1><p>A little space for businesses run by friends of the Corner.</p></section><section class="market-grid" aria-label="Businesses">${listings.map(item=>`<article class="market-item">${galleryMarkup(item.gallery)}<div class="market-details"><p class="eyebrow">${esc(item.category)}</p><h2>${esc(item.name)}</h2><p>${esc(item.description)}</p><div class="market-links">${/^\d{8,15}$/.test(item.whatsapp||'')?external('https://wa.me/'+item.whatsapp,'WhatsApp','whatsapp'):''}${/^[\w.]{1,30}$/.test(item.instagram||'')?external('https://www.instagram.com/'+item.instagram+'/','Instagram','instagram'):''}${/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(item.email||'')?external('mailto:'+item.email,'Email','email'):''}</div></div></article>`).join('')}</section><section class="market-join"><h2>Want your business here?</h2><p>Listings are free.</p>${addLink}</section></main>`;
+ return `<main class="market-page" id="main"><a class="back-link" href="index.html#journal">← Back to the notebook</a><section class="market-hero"><span class="market-icon">${icon('shop')}</span><h1>The Corner <em>Market.</em></h1><p>A little space for businesses run by friends of the Corner.</p></section><section class="market-grid" aria-label="Businesses">${listings.map(item=>`<article class="market-item" data-source-id="${esc(item._id||item.source_id||'')}">${galleryMarkup(item.gallery)}<div class="market-details"><p class="eyebrow">${esc(item.category)}</p><h2>${esc(item.name)}</h2><p>${esc(item.description)}</p><div class="market-links">${item.id?`<a class="market-contact" href="/shops/${esc(item.id)}">${icon('shop')} View catalogue</a>`:''}${/^\d{8,15}$/.test(item.whatsapp||'')?external('https://wa.me/'+item.whatsapp,'WhatsApp','whatsapp'):''}${/^[\w.]{1,30}$/.test(item.instagram||'')?external('https://www.instagram.com/'+item.instagram+'/','Instagram','instagram'):''}${/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(item.email||'')?external('mailto:'+item.email,'Email','email'):''}</div></div></article>`).join('')}</section><section class="market-join"><h2>Want your business here?</h2><p>Listings are free.</p>${addLink}</section></main><script src="/market-catalogue.js" defer></script>`;
 }
 export function commentSection(slug) {
  return `<section class="story-comments" data-story="${esc(slug)}" aria-labelledby="comments-title"><h2 id="comments-title">Leave a note</h2><p>What did this story bring to mind?</p><form hidden><label>Your comment<textarea name="message" required maxlength="1200" rows="4"></textarea></label><label>Sign as <span>(optional)</span><input name="signature" maxlength="40" placeholder="A name, a nickname, or leave blank"></label><div hidden aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div><button type="submit">Post comment</button></form><p role="status"></p><noscript>Enable JavaScript to read and leave comments.</noscript><ol class="comment-list"></ol></section>`;

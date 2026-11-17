@@ -24,7 +24,9 @@ export async function database(path, options = {}) {
   });
   if (!response.ok) {
     const problem = await response.json().catch(() => ({}));
-    throw Error('Market database HTTP ' + response.status + ' (' + (problem.code || 'request rejected') + ').');
+    const error = Error('Market database HTTP ' + response.status + ' (' + (problem.code || 'request rejected') + ').');
+    error.code = problem.code; error.detail = problem.message; error.status = response.status;
+    throw error;
   }
   const body = await response.text();
   return body ? JSON.parse(body) : null;

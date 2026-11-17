@@ -7,6 +7,7 @@
   <title>Seller access — Khaleel’s Corner</title>
   <link rel="stylesheet" href="seller.css">
   <script src="seller.js" defer></script>
+  <script src="seller-catalogue.js" defer></script>
 </head>
 <body>
 <main>
@@ -24,7 +25,27 @@
   <section id="workspace" hidden>
     <h2 id="welcome"></h2>
     <button id="logout" type="button">Sign out</button>
-    <p id="seller-note" hidden>Your catalogue allowance is five items. Catalogue editing will open after the shop setup is complete.</p>
+    <p id="seller-note" hidden>Your space in the Corner Market. Add up to five items, then publish whenever you’re ready.</p>
+    <section id="catalogue" hidden aria-labelledby="catalogue-title">
+      <h2 id="catalogue-title">Your catalogue</h2>
+      <div id="owner-catalogue" hidden><label>Business to edit<select id="catalogue-business"></select></label><button id="catalogue-import" type="button">Set up existing business profiles</button></div>
+      <p id="catalogue-status" role="status" aria-live="polite"></p>
+      <form id="catalogue-form" hidden>
+        <fieldset><legend>Business details</legend>
+          <label>Business name<input name="name" maxlength="100" required></label>
+          <label>Category<input name="category" maxlength="80" placeholder="Fashion, footwear, food…"></label>
+          <label>About the business<textarea name="description" rows="3" maxlength="1200"></textarea></label>
+          <div class="field-grid"><label>WhatsApp number<input name="whatsapp" inputmode="tel" maxlength="15" placeholder="2348012345678"></label><label>Instagram handle<input name="instagram" maxlength="30" placeholder="yourbusiness"></label></div>
+          <label>Public contact email (optional)<input name="email" type="email" maxlength="150"></label>
+          <div class="field-grid"><div id="logo-upload"></div><div id="flyer-upload"></div></div>
+        </fieldset>
+        <fieldset><legend>Catalogue items <span id="item-count"></span></legend><p>Up to five items. Each can have two photos. Leave the price blank for “Ask for price”.</p><div id="catalogue-items"></div><button id="add-item" type="button">＋ Add an item</button></fieldset>
+        <p id="photo-usage"></p>
+        <p class="hint">Photos are resized automatically to 400 KB or less. Uploaded photos have public image links. Draft text stays private until you publish. Keep original photos on your device.</p>
+        <div class="editor-actions"><button type="submit">Save draft</button><button id="publish-catalogue" type="button">Publish changes</button><button id="preview-catalogue" type="button">Preview</button><a id="public-catalogue" hidden target="_blank" rel="noopener">View public catalogue ↗</a></div>
+      </form>
+      <section id="catalogue-preview" hidden aria-label="Catalogue preview"><h3>Preview — unsaved changes</h3><div id="preview-content"></div></section>
+    </section>
     <section id="management" hidden>
       <h2>Seller access</h2>
       <p>Confirm a recovery request through the business’s known contact before issuing a new code. Resetting signs out the old sessions.</p>
