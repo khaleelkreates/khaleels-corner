@@ -64,8 +64,14 @@
 .comment-thread{margin:.3rem 0 0 clamp(.6rem,4vw,1.5rem);padding-inline-start:.8rem;border-inline-start:2px solid #d7d0c2}
 
 .site-header .wordmark{display:block;flex:none}
-.corner-brand{width:126px;height:126px;object-fit:contain}
-.site-header{padding-top:4px;padding-bottom:4px}
-footer .corner-brand{width:145px;height:145px}
-.finesse-brand{display:block;width:clamp(210px,30vw,330px);height:auto;max-width:100%;margin:1.5rem auto;border-radius:16px}
-@media(max-width:620px){.corner-brand{width:96px;height:96px}.site-header{gap:8px}.site-header nav{gap:8px}}
+.corner-brand{width:72px;height:72px;object-fit:contain}
+.site-header{padding-top:6px;padding-bottom:6px}
+footer .corner-brand{width:88px;height:88px}
+.finesse-brand{display:block;width:clamp(140px,19vw,220px);height:auto;max-width:100%;margin:1rem auto;border-radius:10px}
+@media(max-width:620px){
+ .corner-brand{width:56px;height:56px}
+ .site-header{gap:8px;padding-top:4px;padding-bottom:4px}
+ .site-header nav{gap:8px;margin-top:3px;flex-wrap:wrap}
+ footer .corner-brand{width:72px;height:72px}
+ .finesse-brand{width:150px;margin:.75rem auto}
+}
