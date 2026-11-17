@@ -86,7 +86,8 @@ export default async function handler(req,res) {
       let clean;
       try {clean=cleanCatalogue(req.body.profile,req.body.items);} catch(error) {return res.status(400).json({error:error.message});}
       if(!Number.isSafeInteger(req.body.version) || req.body.version<0 || typeof req.body.publish!=='boolean') return res.status(400).json({error:'Reload the editor before saving.'});
-      const [before]=await database('market_businesses?id=eq.'+businessId+'&select=profile,items,published_profile,published_items');
+      const [before]=await database('market_businesses?id=eq.'+businessId+'&select=version,profile,items,published_profile,published_items');
+      if(before.version!==req.body.version) return res.status(409).json({error:'A newer edit exists. Copy your changes, then reload this business.'});
       const previousIds=Array.from(new Set(JSON.stringify(before).match(/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/gi)||[]));
       const version=await rpc('market_save_catalogue',{session_hash:hash,shop_id:businessId,shop_profile:clean.profile,shop_items:clean.items,expected_version:req.body.version,make_public:req.body.publish});
       const deleted=(await Promise.all(previousIds.filter(id=>!JSON.stringify(clean).includes(id)).map(id=>cleanUnused(hash,businessId,id).catch(()=>[])))).flat();
