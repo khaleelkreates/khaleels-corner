@@ -100,6 +100,7 @@ export default async function handler(req,res) {
     }
     return res.status(400).json({error:'Unknown catalogue action.'});
   } catch(error) {
+    console.error('Market catalogue request failed', {code:error.code||'unavailable',status:error.status||0});
     if(error.code==='40001') return res.status(409).json({error:'A newer edit exists. Copy your changes, then reload this business.'});
     if(error.code==='P0001') return res.status(400).json({error:['Shop image allowance reached','Photo is not available for this shop','Maximum five catalogue items','Maximum two photos per item'].includes(error.detail)?error.detail:'The catalogue could not be saved. Check its fields.'});
     if(error.code==='42703' || error.code==='42P01' || error.code==='PGRST202') return res.status(503).json({error:'Run the market-catalogue.sql migration in Supabase to activate the editor.'});
