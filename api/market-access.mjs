@@ -1,13 +1,11 @@
 import {randomBytes} from 'node:crypto';
 import {cookieToken, currentAccount, database, digest, issueCode, normalizeCode, rpc, setSessionCookie} from '../server/market-access.mjs';
-import {sanitySettings, API_VERSION} from '../content-source.mjs';
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow');
   if (!process.env.MARKET_SUPABASE_SECRET || !process.env.MARKET_ACCESS_SECRET) return res.status(503).json({error: 'Seller access setup is in progress.'});
   if (!['GET', 'POST'].includes(req.method)) return res.status(405).json({error: 'Unsupported method.'});
-  let setupStep = 'request';
   try {
     if (req.method === 'GET') {
       const account = await currentAccount(req);
@@ -16,33 +14,6 @@ export default async function handler(req, res) {
     }
     if (req.headers.origin !== 'https://' + req.headers.host || !/^application\/json(?:;|$)/i.test(req.headers['content-type'] || '')) return res.status(403).json({error: 'Invalid request.'});
     const {action, code, targetId, businessId, label, role, active} = req.body || {};
-    if (action === 'initialise') {
-      const expected = process.env.MARKET_BOOTSTRAP_CODE;
-      if (!expected || digest(normalizeCode(code), process.env.MARKET_ACCESS_SECRET) !== digest(expected, process.env.MARKET_ACCESS_SECRET)) return res.status(403).json({error:'Setup access required.'});
-      setupStep = 'owner lookup';
-      const owners = await database('market_accounts?role=eq.owner&select=id');
-      if (owners.length) return res.status(409).json({error:'Owner already configured.'});
-      const {projectId,dataset} = sanitySettings();
-      const source = new URL(`https://${projectId}.api.sanity.io/v${API_VERSION}/data/query/${dataset}`);
-      source.searchParams.set('query','*[_type=="marketListing" && hidden!=true]{_id,name}');
-      source.searchParams.set('perspective','published');
-      setupStep = 'business source';
-      const response = await fetch(source,{signal:AbortSignal.timeout(12000)});
-      if (!response.ok) throw Error('Business import failed.');
-      const {result} = await response.json();
-      for (const shop of result) {
-        setupStep = 'business import';
-        await database('market_businesses?on_conflict=source_id', {
-          method:'POST',headers:{Prefer:'resolution=ignore-duplicates'},
-          body:JSON.stringify({source_id:shop._id,name:shop.name}),
-        });
-      }
-      setupStep = 'owner creation';
-      await database('market_accounts', {
-        method:'POST',body:JSON.stringify({label:'Khaleel',role:'owner',code_hash:digest(expected,process.env.MARKET_ACCESS_SECRET)}),
-      });
-      return res.json({ok:true,businesses:result.length});
-    }
     if (action === 'login') {
       const clean = normalizeCode(code);
       if (!/^[A-Z0-9]{1,10}(?:-[A-Z2-9]{4}){3}$/.test(clean)) return res.status(401).json({error: 'Invalid or inactive access code.'});
@@ -92,9 +63,7 @@ export default async function handler(req, res) {
       return res.json({code: await issueCode(account, target, prefix || 'MARKET')});
     }
     return res.status(403).json({error: 'Action unavailable.'});
-  } catch (error) {
-    const setup = process.env.MARKET_BOOTSTRAP_CODE;
-    const authorisedSetup = req.body?.action === 'initialise' && setup && normalizeCode(req.body.code) === setup;
-    return res.status(503).json({error: authorisedSetup ? ( /^Market database HTTP/.test(error.message) ? error.message : 'Setup failed at ' + setupStep + ' (' + error.name + ').') : 'Seller access is temporarily unavailable.'});
+  } catch {
+    return res.status(503).json({error: 'Seller access is temporarily unavailable.'});
   }
 }
