@@ -26,7 +26,8 @@ export async function database(path, options = {}) {
     const problem = await response.json().catch(() => ({}));
     throw Error('Market database HTTP ' + response.status + ' (' + (problem.code || 'request rejected') + ').');
   }
-  return response.status === 204 ? null : response.json();
+  const body = await response.text();
+  return body ? JSON.parse(body) : null;
 }
 export function rpc(name, parameters) {
   return database('rpc/' + name, {method: 'POST', body: JSON.stringify(parameters)});
