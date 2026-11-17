@@ -72,6 +72,7 @@ login.addEventListener('submit', async event => {
   finally {button.disabled = false;}
 });
 document.querySelector('#logout').addEventListener('click', async () => {
+  if(window.catalogueBusy) {status.textContent='Please wait for the catalogue operation to finish before signing out.';return;}
   if(window.catalogueDirty && !confirm('Leave without saving your catalogue changes?')) return;
   try {await request({action:'logout'});location.reload();}
   catch(error) {status.textContent = error.message;}

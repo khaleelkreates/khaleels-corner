@@ -9,7 +9,7 @@
     const response=await fetch('/api/market-catalogue'+(id?'?businessId='+encodeURIComponent(id):''),body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,businessId:shop?.id})}:{});
     const data=await response.json();if(!response.ok) throw Error(data.error||'Request failed.');return data;
   }
-  function lock(value) {busy=value;form.querySelectorAll('button,input,textarea,select').forEach(el=>el.disabled=value);$('catalogue-business').disabled=value;}
+  function lock(value) {busy=value;window.catalogueBusy=value;form.querySelectorAll('button,input,textarea,select').forEach(el=>el.disabled=value);$('catalogue-business').disabled=value;}
   function usage() {$('item-count').textContent=shop.items.length+'/5';$('add-item').disabled=busy||shop.items.length>=5;$('photo-usage').textContent=media.size+' of 24 stored photos · '+(Array.from(media.values()).reduce((sum,m)=>sum+m.bytes,0)/1048576).toFixed(1)+' of 10 MB used. Saved and published versions can share photos.';}
   async function compress(file) {
     if(!file.type.startsWith('image/') || file.size>20000000) throw Error('Choose a photo smaller than 20 MB.');
@@ -49,6 +49,14 @@
   }
   function renderPhotos() {
     for(const key of ['logo','flyer']) $(key+'-upload').replaceChildren(photoControl(key==='logo'?'Business logo':'Main flyer',shop.profile[key]?[shop.profile[key]]:[],ids=>shop.profile[key]=ids[0]||null,1));
+    if(!shop.profile.flyer && shop.profile.legacyGallery?.length) {
+      const existing=node('div',null,'photo-row');
+      shop.profile.legacyGallery.slice(0,2).forEach(photo=>{
+        if(!/^https:\/\/cdn\.sanity\.io\/images\/[\w/.-]+$/.test(photo.url||'')) return;
+        const tile=node('a',null,'photo-tile');tile.href=photo.url;tile.target='_blank';tile.rel='noopener';
+        const image=node('img');image.src=photo.url;image.alt=photo.alt||'Existing business image';image.loading='lazy';tile.append(image);existing.append(tile);
+      });$('flyer-upload').append(node('p','Your existing gallery stays public until you upload a replacement flyer.','hint'),existing);
+    }
   }
   function renderItems() {
     $('catalogue-items').replaceChildren(...shop.items.map((item,index)=>{
@@ -64,7 +72,7 @@
   async function load(id) {
     if(busy) return;
     if(window.catalogueDirty && !confirm('Discard unsaved changes and load this business?')) return false;
-    status.textContent='Loading catalogue…';
+    lock(true);status.textContent='Loading catalogue…';
     try {
       const data=await api(null,id);shop=data.shop;shop.profile={...defaults,...shop.profile,name:shop.profile.name||shop.name};
       media=new Map(data.media.map(image=>[image.id,image]));
@@ -73,6 +81,7 @@
       $('public-catalogue').href='/shops/'+shop.id;$('public-catalogue').hidden=!shop.published_profile;
       status.textContent='Changes stay in your draft until you click Publish changes.';return true;
     } catch(error) {form.hidden=true;status.textContent=error.message;return false;}
+    finally {lock(false);if(shop) usage();}
   }
   async function save(publish) {
     if(busy || !form.reportValidity()) return;

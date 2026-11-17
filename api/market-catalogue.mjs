@@ -21,6 +21,9 @@ async function importProfiles() {
   let count=0;
   for(const source of result.filter(item=>!item.hidden)) {
     const profile={...Object.fromEntries(['name','category','description','whatsapp','instagram','email'].map(key=>[key,source[key]||''])),logo:null,flyer:null,legacyGallery:source.gallery||[]};
+    await database('market_businesses?on_conflict=source_id',{
+      method:'POST',headers:{Prefer:'resolution=ignore-duplicates'},body:JSON.stringify({source_id:source._id,name:source.name}),
+    });
     const changed=await database('market_businesses?source_id=eq.'+encodeURIComponent(source._id)+'&version=eq.0',{
       method:'PATCH',headers:{Prefer:'return=representation'},body:JSON.stringify({profile,version:1,published_profile:profile,published_items:[]}),
     });
