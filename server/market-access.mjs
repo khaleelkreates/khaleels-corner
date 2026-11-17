@@ -14,15 +14,18 @@ export function digest(value, secret) {
   return createHmac('sha256', secret).update(value).digest('hex');
 }
 export async function database(path, options = {}) {
-  const url = process.env.MARKET_SUPABASE_URL;
-  const key = process.env.MARKET_SUPABASE_SECRET;
+  const url = process.env.MARKET_SUPABASE_URL?.trim();
+  const key = process.env.MARKET_SUPABASE_SECRET?.trim();
   if (!url || !key || !process.env.MARKET_ACCESS_SECRET) throw Error('Market access is not configured.');
   const response = await fetch(url.replace(/\/$/, '') + '/rest/v1/' + path, {
     ...options,
     headers: {apikey: key, Authorization: 'Bearer ' + key, 'Content-Type': 'application/json', ...options.headers},
     signal: AbortSignal.timeout(12000),
   });
-  if (!response.ok) throw Error('Market request failed.');
+  if (!response.ok) {
+    const problem = await response.json().catch(() => ({}));
+    throw Error('Market database HTTP ' + response.status + ' (' + (problem.code || 'request rejected') + ').');
+  }
   return response.status === 204 ? null : response.json();
 }
 export function rpc(name, parameters) {

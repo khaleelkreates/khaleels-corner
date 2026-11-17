@@ -87,7 +87,9 @@ export default async function handler(req, res) {
       return res.json({code: await issueCode(account, target, prefix || 'MARKET')});
     }
     return res.status(403).json({error: 'Action unavailable.'});
-  } catch {
-    return res.status(503).json({error: 'Seller access is temporarily unavailable.'});
+  } catch (error) {
+    const setup = process.env.MARKET_BOOTSTRAP_CODE;
+    const authorisedSetup = req.body?.action === 'initialise' && setup && normalizeCode(req.body.code) === setup;
+    return res.status(503).json({error: authorisedSetup && /^Market database HTTP/.test(error.message) ? error.message : 'Seller access is temporarily unavailable.'});
   }
 }
