@@ -18,7 +18,7 @@
         const text=document.createElement('span');text.className='contact-label';text.textContent=label;a.append(text);
         if(href.startsWith('https:')) {a.target='_blank';a.rel='noopener noreferrer';}return a;
       };
-      const updated=[anchor('/shops/'+encodeURIComponent(shop.id),'View catalogue','catalogue')];
+      const updated=[anchor('/shops/'+encodeURIComponent(shop.id),'Catalogue','catalogue')];
       if(/^\d{8,15}$/.test(shop.whatsapp||'')) updated.push(anchor('https://wa.me/'+shop.whatsapp,'WhatsApp','whatsapp'));
       if(/^[\w.]{1,30}$/.test(shop.instagram||'')) updated.push(anchor('https://www.instagram.com/'+shop.instagram+'/','Instagram','instagram'));
       if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(shop.email||'')) updated.push(anchor('mailto:'+shop.email,'Email','email'));
