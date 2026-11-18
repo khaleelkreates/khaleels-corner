@@ -28,7 +28,15 @@
 .market-item h2{font:normal clamp(1.55rem,3vw,1.9rem)/1.1 Georgia,serif;margin:.4rem 0 .55rem}
 .market-item p{overflow-wrap:anywhere}
 .market-details>p:not(.eyebrow){margin:0 0 1.15rem;line-height:1.55}
-.market-links{margin-top:auto;display:flex;flex-wrap:wrap;gap:.5rem}
+.market-links{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-top:14px;border-top:1px solid #e7e4da}
+.market-links .market-contact{position:relative;display:grid;place-items:center;width:46px;height:46px;min-width:46px;flex:0 0 46px;padding:0;border:1px solid #d9dfd3;background:#f0f3eb;color:#234638;box-shadow:0 2px 4px #23463806}
+.market-contact svg{display:block;flex:none}
+.market-links .market-action-catalogue{background:#234638;color:#fff;border-color:#234638}
+.market-links .market-action-whatsapp{color:#187d43;background:#edf7ee;border-color:#d7e9d8}
+.market-links .market-action-instagram{color:#a33172;background:#fcf0f5;border-color:#efdae5}
+.market-links .contact-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(hover:hover){.market-links .market-contact:hover{filter:brightness(.95);box-shadow:0 3px 9px #23463817}}
+@media(prefers-reduced-motion:no-preference){.market-links .market-contact{transition:transform .18s ease,box-shadow .18s ease}.market-links .market-contact:hover{transform:translateY(-2px)}}
 .market-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;padding:.65rem;border-radius:17px 17px 0 0;background:#efede4}
 .market-gallery[data-image-count="1"]{grid-template-columns:minmax(0,1fr)}
 .market-gallery-photo,.market-gallery-logo{position:relative;display:grid;place-items:center;aspect-ratio:1.2;min-width:0;border-radius:11px;background:#e4e6dc}

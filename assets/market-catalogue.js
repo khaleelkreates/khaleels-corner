@@ -8,17 +8,20 @@
       card.querySelector('h2').textContent=shop.name;card.querySelector('.eyebrow').textContent=shop.category;
       card.querySelector('.market-details > p:not(.eyebrow)').textContent=shop.description;
       const links=card.querySelector('.market-links');
-      const anchor=(href,label,icon)=>{
+      const anchor=(href,label,kind)=>{
         const a=document.createElement('a');a.className='market-contact';a.href=href;
-        if(icon) a.append(icon.cloneNode(true));a.append(document.createTextNode(label));
+        if(kind) {
+          a.classList.add('market-action-'+kind);a.setAttribute('aria-label',label);a.title=label;
+          const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('width','22');svg.setAttribute('height','22');svg.setAttribute('aria-hidden','true');
+          const use=document.createElementNS('http://www.w3.org/2000/svg','use');use.setAttribute('href','/market-icons.svg#'+kind);svg.append(use);a.append(svg);
+        }
+        const text=document.createElement('span');text.className='contact-label';text.textContent=label;a.append(text);
         if(href.startsWith('https:')) {a.target='_blank';a.rel='noopener noreferrer';}return a;
       };
-      const old=Array.from(links.querySelectorAll('a'));
-      const contactIcon=part=>old.find(link=>link.href.includes(part))?.querySelector('svg');
-      const updated=[anchor('/shops/'+encodeURIComponent(shop.id),'View catalogue')];
-      if(/^\d{8,15}$/.test(shop.whatsapp||'')) updated.push(anchor('https://wa.me/'+shop.whatsapp,'WhatsApp',contactIcon('wa.me')));
-      if(/^[\w.]{1,30}$/.test(shop.instagram||'')) updated.push(anchor('https://www.instagram.com/'+shop.instagram+'/','Instagram',contactIcon('instagram.com')));
-      if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(shop.email||'')) updated.push(anchor('mailto:'+shop.email,'Email',contactIcon('mailto:')));
+      const updated=[anchor('/shops/'+encodeURIComponent(shop.id),'View catalogue','catalogue')];
+      if(/^\d{8,15}$/.test(shop.whatsapp||'')) updated.push(anchor('https://wa.me/'+shop.whatsapp,'WhatsApp','whatsapp'));
+      if(/^[\w.]{1,30}$/.test(shop.instagram||'')) updated.push(anchor('https://www.instagram.com/'+shop.instagram+'/','Instagram','instagram'));
+      if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(shop.email||'')) updated.push(anchor('mailto:'+shop.email,'Email','email'));
       links.replaceChildren(...updated);
       if(shop.flyer && shop.gallery[0]) {
         const gallery=document.createElement('div');gallery.className='market-gallery';gallery.dataset.imageCount='1';
