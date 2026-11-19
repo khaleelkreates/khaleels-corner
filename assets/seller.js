@@ -8,7 +8,7 @@ async function request(body) {
     method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),
   } : {});
   const data = await response.json();
-  if (!response.ok) throw Error(data.error || 'Request failed.');
+  if (!response.ok) {const error=Error(data.error||'Request failed.');error.status=response.status;throw error;}
   return data;
 }
 function revealCode(code) {
@@ -87,4 +87,4 @@ create.addEventListener('submit', async event => {
   } catch(error) {status.textContent = error.message;}
   finally {button.disabled = false;}
 });
-request().then(show).catch(error => {status.textContent = error.message;});
+request().then(show).catch(error => {status.textContent=error.status===401?'':error.message;});
