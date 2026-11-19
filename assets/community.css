@@ -85,3 +85,27 @@ footer .corner-brand{width:88px;height:88px}
  footer .corner-brand{width:72px;height:72px}
  .finesse-brand{width:150px;margin:.75rem auto}
 }
+
+/* Shared responsive navigation. */
+.site-header{display:flex;position:relative;z-index:20}
+.explore-navigation{margin-left:auto;position:relative}
+.explore-navigation>summary{display:none}
+.site-header .explore-navigation nav{display:flex;align-items:center;gap:24px;font-size:13px}
+.site-header .explore-navigation nav>a{display:inline-flex;align-items:center;min-height:44px;gap:8px;white-space:nowrap}
+.site-header .explore-navigation nav>a[aria-current]{color:#234638;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px}
+.site-header .explore-navigation .finesse-nav span{display:inline-block;margin:0;font-size:9px;letter-spacing:0;background:#e7eee3;color:#42634a;border-radius:20px;padding:3px 7px}
+@media(max-width:760px){
+ .site-header{flex-wrap:nowrap;gap:16px}
+ .explore-navigation>summary{list-style:none;display:flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:10px 15px;border:1px solid #cbd5c6;border-radius:24px;background:#fffdf7;color:#234638;font:600 14px/1.3 system-ui;cursor:pointer}
+ .explore-navigation>summary::-webkit-details-marker{display:none}
+ .explore-navigation[open]>summary svg{transform:rotate(180deg)}
+ .site-header .explore-navigation nav{position:absolute;right:0;top:calc(100% + 12px);width:290px;max-width:calc(100vw - 40px);display:flex;flex-direction:column;align-items:stretch;gap:4px;margin:0;padding:10px;border:1px solid #d4ddcf;border-radius:16px;background:#fffdf7;box-shadow:0 14px 38px #173d3226;font-size:15px}
+ .site-header .explore-navigation:not([open]) nav{display:none}
+ .site-header .explore-navigation nav>a{padding:11px 14px;min-height:48px;border-radius:9px;white-space:normal}
+ .site-header .explore-navigation nav>a[aria-current]{background:#e7eee3;text-decoration:none;font-weight:600}
+ .site-header .explore-navigation .finesse-nav{border-left:0;border-top:1px solid #e7e4da;padding-left:14px;justify-content:space-between}
+ .explore-navigation>summary:focus-visible{outline:2px solid #9b583e;outline-offset:4px}
+}
+@media(prefers-reduced-motion:no-preference){.explore-navigation summary svg{transition:transform .18s ease}.explore-navigation[open] nav{animation:explore-in .16s ease-out}@keyframes explore-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}}
+
+.explore-navigation>summary svg{display:block;flex:none;width:16px;height:16px;stroke-linecap:round;stroke-linejoin:round}
