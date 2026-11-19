@@ -1,3 +1,4 @@
+import {shopSlug,shopPath,initialShopSlug} from '../shop-routes.mjs';
 import {cookieToken,currentAccount,database,digest,rpc} from '../server/market-access.mjs';
 import {cleanCatalogue,ensureBucket,isId,mediaUrl,storage} from '../server/market-catalogue.mjs';
 import {sanitySettings,API_VERSION} from '../content-source.mjs';
@@ -20,7 +21,7 @@ async function importProfiles() {
   const {result}=await response.json();
   let count=0;
   for(const source of result.filter(item=>!item.hidden)) {
-    const profile={...Object.fromEntries(['name','category','description','whatsapp','instagram','email'].map(key=>[key,source[key]||''])),logo:null,flyer:null,legacyGallery:source.gallery||[]};
+    const profile={...Object.fromEntries(['name','category','description','whatsapp','instagram','email'].map(key=>[key,source[key]||''])),logo:null,flyer:null,slug:initialShopSlug(source.name,source._id),legacyGallery:source.gallery||[]};
     await database('market_businesses?on_conflict=source_id',{
       method:'POST',headers:{Prefer:'resolution=ignore-duplicates'},body:JSON.stringify({source_id:source._id,name:source.name}),
     });
@@ -55,7 +56,7 @@ export default async function handler(req,res) {
     if(req.method==='GET') {
       const [shops,media]=await Promise.all([database('market_businesses?id=eq.'+businessId+'&select=id,name,profile,items,version,published_profile'),database('market_media?business_id=eq.'+businessId+'&select=id,bytes,state&order=created_at')]);
       if(!shops.length) return res.status(404).json({error:'Business unavailable.'});
-      return res.json({shop:shops[0],media:media.map(item=>({...item,url:mediaUrl(businessId,item.id)}))});
+      return res.json({shop:{...shops[0],url:shopPath(shops[0])},media:media.map(item=>({...item,url:mediaUrl(businessId,item.id)}))});
     }
     const {action}=req.body;
     if(action==='upload') {
@@ -91,6 +92,7 @@ export default async function handler(req,res) {
       if(!Number.isSafeInteger(req.body.version) || req.body.version<0 || typeof req.body.publish!=='boolean') return res.status(400).json({error:'Reload the editor before saving.'});
       const [before]=await database('market_businesses?id=eq.'+businessId+'&select=version,profile,items,published_profile,published_items');
       if(before.version!==req.body.version) return res.status(409).json({error:'A newer edit exists. Copy your changes, then reload this business.'});
+      clean.profile.slug=shopSlug({...before,id:businessId});
       const previousIds=Array.from(new Set(JSON.stringify(before).match(/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/gi)||[]));
       const version=await rpc('market_save_catalogue',{session_hash:hash,shop_id:businessId,shop_profile:clean.profile,shop_items:clean.items,expected_version:req.body.version,make_public:req.body.publish});
       const deleted=(await Promise.all(previousIds.filter(id=>!JSON.stringify(clean).includes(id)).map(id=>cleanUnused(hash,businessId,id).catch(()=>[])))).flat();

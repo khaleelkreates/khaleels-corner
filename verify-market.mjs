@@ -1,3 +1,5 @@
+import {shopPath,registeredShopId,initialShopSlug} from './shop-routes.mjs';
+import cataloguePublicHandler from './api/catalogue-public.mjs';
 import assert from 'node:assert/strict';
 import {cleanCatalogue,isId} from './server/market-catalogue.mjs';
 import {shopPage} from './api/catalogue-public.mjs';
@@ -41,3 +43,19 @@ try {
   globalThis.fetch=originalFetch;
   for(const [key,value] of Object.entries({MARKET_ACCESS_SECRET:previousSecret,MARKET_SUPABASE_URL:previousUrl,MARKET_SUPABASE_SECRET:previousKey})) {if(value===undefined) delete process.env[key];else process.env[key]=value;}
 }
+
+const known='50aeafcf-99c5-4724-bb1a-a17d6b8463fc';
+assert.equal(shopPath({id:known,name:'A newly edited business name'}),'/market/el-lizzy');
+assert.equal(registeredShopId('el-lizzy'),known);
+assert.equal(initialShopSlug('A & B','source-one'),initialShopSlug('A & B','source-one'));
+assert.notEqual(initialShopSlug('A & B','source-one'),initialShopSlug('A & B','source-two'));
+const previous={fetch:globalThis.fetch,url:process.env.MARKET_SUPABASE_URL,key:process.env.MARKET_SUPABASE_SECRET,secret:process.env.MARKET_ACCESS_SECRET};
+try{
+ process.env.MARKET_SUPABASE_URL='https://example.supabase.co';process.env.MARKET_SUPABASE_SECRET='test';process.env.MARKET_ACCESS_SECRET='test';
+ globalThis.fetch=async url=>{assert.ok(String(url).includes('id=eq.'+known));return new Response(JSON.stringify([{id:known,source_id:'market-el-lizzy-abode',published_profile:{name:'EL-Lizzy',description:'Example',category:'Real estate',legacyGallery:[]},published_items:[]}]));};
+ const makeResponse=()=>({code:200,headers:{},setHeader(k,v){this.headers[k]=v;return this;},status(c){this.code=c;return this;},json(data){return {status:this.code,data,headers:this.headers};},send(data){return {status:this.code,data,headers:this.headers};},end(){return {status:this.code,headers:this.headers};}});
+ const old=await cataloguePublicHandler({method:'GET',query:{business:known,page:'1'}},makeResponse());assert.equal(old.status,308);assert.equal(old.headers.Location,'/market/el-lizzy');
+ const pretty=await cataloguePublicHandler({method:'GET',query:{slug:'el-lizzy',page:'1'}},makeResponse());assert.equal(pretty.status,200);assert.ok(pretty.data.includes('/market/el-lizzy'));assert.ok(!pretty.data.includes('/shops/'+known));
+ assert.equal((await cataloguePublicHandler({method:'GET',query:{slug:'../unsafe',page:'1'}},makeResponse())).status,404);
+ console.log('PASS permanent readable slugs, name-change stability, legacy redirects and safe route validation.');
+}finally{globalThis.fetch=previous.fetch;for(const [key,value]of Object.entries({MARKET_SUPABASE_URL:previous.url,MARKET_SUPABASE_SECRET:previous.key,MARKET_ACCESS_SECRET:previous.secret})){if(value===undefined)delete process.env[key];else process.env[key]=value;}}

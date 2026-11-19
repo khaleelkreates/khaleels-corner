@@ -6,6 +6,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/market/:slug",
+      "destination": "/api/catalogue-public?slug=:slug&page=1"
+    },
+    {
       "source": "/shops/:business",
       "destination": "/api/catalogue-public?business=:business&page=1"
     },

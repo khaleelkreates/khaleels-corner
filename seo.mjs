@@ -1,3 +1,4 @@
+import {shopPath} from './shop-routes.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import site from './site-config.json' with {type:'json'};
@@ -14,7 +15,7 @@ export function enhanceOutput({out,posts,shops=[]}){
  if(!origin){fs.writeFileSync(path.join(out,'robots.txt'),`User-agent: *\n${preview?'Disallow: /':'Allow: /'}\n`);console.log('SEO: set SITE_URL to generate sitemap, RSS and absolute structured data.');return;}
  const verification=process.env.GOOGLE_SITE_VERIFICATION?.trim();
  if(verification && !preview)head('index.html',`<meta name="google-site-verification" content="${xml(verification)}">`);
- const urls=[`${origin}/`,`${origin}/market.html`,`${origin}/finesse/index.html`,...posts.map(p=>`${origin}/posts/${p.slug}.html`),...shops.map(shop=>`${origin}/shops/${shop.id}`)];
+ const urls=[`${origin}/`,`${origin}/market.html`,`${origin}/finesse/index.html`,...posts.map(p=>`${origin}/posts/${p.slug}.html`),...shops.map(shop=>`${origin}${shopPath(shop)}`)];
  fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${xml(url)}</loc></url>`).join('')}</urlset>`);
  fs.writeFileSync(path.join(out,'robots.txt'),`User-agent: *\n${preview?'Disallow: /':'Allow: /'}\nSitemap: ${origin}/sitemap.xml\n`);
  const rss=`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Khaleel’s Corner</title><link>${xml(origin)}/</link><description>Stories, reflections and life as it comes, by Khaleel.</description><language>en</language><atom:link href="${xml(origin)}/feed.xml" rel="self" type="application/rss+xml"/>${posts.map(p=>{const url=`${origin}/posts/${p.slug}.html`;return `<item><title>${xml(p.title)}</title><link>${xml(url)}</link><guid isPermaLink="true">${xml(url)}</guid><description>${xml(p.excerpt||p.body.split('\n')[0])}</description><category>${xml(p.category)}</category>${p.date?`<pubDate>${new Date(p.date+'T12:00:00+01:00').toUTCString()}</pubDate>`:''}</item>`}).join('')}</channel></rss>`;

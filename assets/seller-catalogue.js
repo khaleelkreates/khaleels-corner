@@ -78,7 +78,7 @@
       media=new Map(data.media.map(image=>[image.id,image]));
       for(const key of Object.keys(defaults).filter(key=>!['logo','flyer'].includes(key))) form.elements.namedItem(key).value=shop.profile[key];
       form.hidden=false;window.catalogueDirty=false;renderPhotos();renderItems();$('catalogue-preview').hidden=true;
-      $('public-catalogue').href='/shops/'+shop.id;$('public-catalogue').hidden=!shop.published_profile;
+      $('public-catalogue').href=shop.url||'/shops/'+shop.id;$('public-catalogue').hidden=!shop.published_profile;
       status.textContent='Changes stay in your draft until you click Publish changes.';return true;
     } catch(error) {form.hidden=true;status.textContent=error.message;return false;}
     finally {lock(false);if(shop) usage();}

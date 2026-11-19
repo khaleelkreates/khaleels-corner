@@ -1,10 +1,11 @@
+import {shopPath,registeredShopId} from '../shop-routes.mjs';
 import {database} from '../server/market-access.mjs';
 import {isId,publicShop,publishedShops} from '../server/market-catalogue.mjs';
 import {escapeText as esc} from '../reading-text.mjs';
 import site from '../site-config.json' with {type:'json'};
 
 export function shopPage(shop) {
-  const canonical=(process.env.SITE_URL||site.siteUrl).replace(/\/$/,'')+'/shops/'+shop.id;
+  const canonical=(process.env.SITE_URL||site.siteUrl).replace(/\/$/,'')+shopPath(shop);
   const actionIcon=kind=>`<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24"><use href="/market-icons.svg#${kind}"></use></svg>`;
   const contact=(item)=>/^\d{8,15}$/.test(shop.whatsapp||'')?`<a class="contact" aria-label="${item?'Ask about this item on WhatsApp':'Message on WhatsApp'}" title="WhatsApp" href="https://wa.me/${shop.whatsapp}?text=${encodeURIComponent('Hi! I saw '+(item?.name||shop.name)+' on Corner Market. I’d like to know more.')}" target="_blank" rel="noopener noreferrer">${actionIcon('whatsapp')}<span class="contact-label">${item?'Ask about this item':'Message on WhatsApp'}</span></a>`:'';
   const images=(urls,alt)=>`<div class="shop-photos">${urls.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="Open full image: ${esc(alt)}"><img src="${esc(url)}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>`).join('')}</div>`;
@@ -14,10 +15,16 @@ export function shopPage(shop) {
 export default async function handler(req,res) {
   if(req.method!=='GET') return res.status(405).json({error:'Unsupported method.'});
   try {
-    if(!req.query.business) {res.setHeader('Cache-Control','public, max-age=0, s-maxage=30');return res.json({shops:await publishedShops()});}
-    if(!isId(req.query.business)) return res.status(404).send('Catalogue not found.');
-    const [row]=await database('market_businesses?id=eq.'+req.query.business+'&published_profile=not.is.null&select=id,source_id,published_profile,published_items');
+    if(!req.query.business && !req.query.slug) {res.setHeader('Cache-Control','public, max-age=0, s-maxage=30');return res.json({shops:await publishedShops()});}
+    const slug=req.query.slug;
+    if(slug && (typeof slug!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||slug.length>100))return res.status(404).send('Catalogue not found.');
+    const id=slug?registeredShopId(slug):req.query.business;
+    if(id&&!isId(id))return res.status(404).send('Catalogue not found.');
+    const filter=id?'id=eq.'+id:slug?'published_profile->>slug=eq.'+encodeURIComponent(slug):null;
+    if(!filter)return res.status(404).send('Catalogue not found.');
+    const [row]=await database('market_businesses?'+filter+'&published_profile=not.is.null&select=id,source_id,published_profile,published_items');
     if(!row) {res.setHeader('X-Robots-Tag','noindex');return res.status(404).send('This catalogue has not been published.');}
+    if(req.query.page==='1' && req.query.business){res.setHeader('Location',shopPath(publicShop(row)));return res.status(308).end();}
     res.setHeader('Cache-Control','public, max-age=0, s-maxage=30');
     if(req.query.page==='1') return res.setHeader('Content-Type','text/html; charset=utf-8').status(200).send(shopPage(publicShop(row)));
     return res.json({shop:publicShop(row)});
