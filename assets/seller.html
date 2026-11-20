@@ -15,9 +15,9 @@
   <p class="workspace-eyebrow">A LITTLE SPACE FOR YOUR BUSINESS</p>
   <h1>Your market workspace.</h1>
   <p class="workspace-lead">Your business, your voice. Keep your details fresh, show your work, and make yourself at home.</p>
-  <p><a href="seller-guide.html">First time here? Read the phone guide ↗</a></p>
+  <section class="seller-start" aria-label="Your shop in three steps"><article><span>01</span><h2>Make it yours</h2><p>Your name, your story, your contacts.</p></article><article><span>02</span><h2>Show your work</h2><p>A fresh flyer. Five things to discover.</p></article><article><span>03</span><h2>Share your corner</h2><p>Preview, publish, send your shop link.</p></article></section><a class="seller-guide-link" href="seller-guide.html">New here? Take the phone walkthrough <span aria-hidden="true">↗</span></a>
   <form id="login">
-    <label>Seller or administrator access code
+    <div class="login-heading"><span aria-hidden="true">↳</span><div><h2>Step inside.</h2><p>Use the private code from your welcome message.</p></div></div><label>Seller or administrator access code
       <input name="code" required maxlength="40" autocomplete="off" spellcheck="false" placeholder="BUSINESS-XXXX-XXXX-XXXX">
     </label>
     <button>Enter workspace</button>
@@ -30,11 +30,11 @@
     <button id="logout" type="button">Sign out</button>
     <p id="seller-note" hidden>Your space in the Corner Market. Add up to five items, then publish whenever you’re ready.</p>
     <section id="catalogue" hidden aria-labelledby="catalogue-title">
-      <h2 id="catalogue-title">Your catalogue</h2>
+      <h2 id="catalogue-title">Your catalogue</h2><nav class="workspace-shortcuts" aria-label="Workspace shortcuts"><a href="#business-details">01 · Your business</a><a href="#business-items">02 · Your items</a><a href="seller-guide.html">Phone guide ↗</a></nav>
       <div id="owner-catalogue" hidden><label>Business to edit<select id="catalogue-business"></select></label><button id="catalogue-import" type="button">Set up existing business profiles</button></div>
       <p id="catalogue-status" role="status" aria-live="polite"></p>
       <form id="catalogue-form" hidden>
-        <fieldset><legend>Business details</legend>
+        <fieldset id="business-details"><legend>01 · Business details</legend>
           <label>Business name<input name="name" maxlength="100" required></label>
           <label>Category<input name="category" maxlength="80" placeholder="Fashion, footwear, food…"></label>
           <label>About the business<textarea name="description" rows="3" maxlength="1200"></textarea></label>
@@ -42,7 +42,7 @@
           <label>Public contact email (optional)<input name="email" type="email" maxlength="150"></label>
           <div class="field-grid"><div id="logo-upload"></div><div id="flyer-upload"></div></div>
         </fieldset>
-        <fieldset><legend>Catalogue items <span id="item-count"></span></legend><p>Up to five items. Each can have two photos. Leave the price blank for “Ask for price”.</p><div id="catalogue-items"></div><button id="add-item" type="button">＋ Add an item</button></fieldset>
+        <fieldset id="business-items"><legend>02 · Catalogue items <span id="item-count"></span></legend><p>Up to five items. Each can have two photos. Leave the price blank for “Ask for price”.</p><div id="catalogue-items"></div><button id="add-item" type="button">＋ Add an item</button></fieldset>
         <p id="photo-usage"></p>
         <p class="hint">Photos are resized automatically to 400 KB or less. Uploaded photos have public image links. Draft text stays private until you publish. Keep original photos on your device.</p>
         <div class="editor-actions"><button type="submit">Save draft</button><button id="publish-catalogue" type="button">Publish changes</button><button id="preview-catalogue" type="button">Preview</button><a id="public-catalogue" hidden target="_blank" rel="noopener">View public catalogue ↗</a></div>
