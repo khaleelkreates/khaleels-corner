@@ -1,0 +1,1 @@
+export function marketCategory(category=''){const value=category.toLowerCase();if(/hair|fashion|footwear|clothing|accessor/.test(value))return 'Style';if(/cake|treat|snack|pastr|food/.test(value))return 'Food';if(/dog|pet|breed/.test(value))return 'Pets';if(/real estate|property|realt/.test(value))return 'Property';if(/auto|vehicle/.test(value))return 'Autos';return 'Services';}

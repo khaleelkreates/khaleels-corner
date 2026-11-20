@@ -1,3 +1,4 @@
+import {marketCategory} from '../market-categories.mjs';
 import {shopSlug,shopPath} from '../shop-routes.mjs';
 import {database} from './market-access.mjs';
 export const isId = value => typeof value === 'string' && /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(value);
@@ -39,7 +40,7 @@ export function mediaUrl(shop,id) {
 }
 export function publicShop(row) {
   const profile=row.published_profile;
-  return {...profile,id:row.id,slug:shopSlug(row),url:shopPath(row),source_id:row.source_id,items:(row.published_items||[]).map(item=>({...item,photos:item.photos.map(id=>mediaUrl(row.id,id))})),
+  return {...profile,group:marketCategory(profile.category),id:row.id,slug:shopSlug(row),url:shopPath(row),source_id:row.source_id,items:(row.published_items||[]).map(item=>({...item,photos:item.photos.map(id=>mediaUrl(row.id,id))})),
     gallery:profile.flyer?[{url:mediaUrl(row.id,profile.flyer),alt:profile.name+' flyer'}]:profile.legacyGallery||[],logo:profile.logo?mediaUrl(row.id,profile.logo):null};
 }
 export async function publishedShops() {
