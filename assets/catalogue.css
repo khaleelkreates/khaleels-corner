@@ -10,3 +10,6 @@ body{background:radial-gradient(ellipse at 0 0,#edf0e2,transparent 45%),#faf7f0}
 @media(max-width:350px){.shop-products{grid-template-columns:1fr}.shop-photos img{height:260px}}
 
 .shop-photos a{position:relative}.shop-photos a:after{content:"↗";position:absolute;right:8px;bottom:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fffdf8e8;color:#234638;font:16px system-ui;border:1px solid #d6dfcb;pointer-events:none}
+
+/* Same forest-green masthead as the rest of the Corner. */
+body>header{max-width:none;background:#173d32;color:#faf7f0;border-bottom-color:#315449;align-items:center;padding:16px max(20px,calc((100vw - 1024px)/2))}.catalogue-brand img{background:#faf7f0;border-radius:12px;padding:5px}body>header a:focus-visible{outline:3px solid #e0bd7f;outline-offset:4px}@media(max-width:620px){body>header{padding:12px 20px}}
