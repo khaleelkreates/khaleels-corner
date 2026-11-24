@@ -11,7 +11,7 @@
  function currentSection(){
   const about=links.find(link=>link.dataset.section==='about');
   const writing=links[0];const normalize=pathname=>pathname.replace(/index\.html$/,'');
-  if(normalize(location.pathname)!==normalize(new URL(writing.href).pathname))return;
+  if(!about||normalize(location.pathname)!==normalize(new URL(writing.href).pathname))return;
   writing.removeAttribute('aria-current');about.removeAttribute('aria-current');
   (location.hash==='#about'?about:writing).setAttribute('aria-current','location');
  }
