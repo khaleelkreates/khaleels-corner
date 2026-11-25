@@ -16,41 +16,22 @@ if (comments) {
  function chooseParent(comment) {
   parentId = comment?.id || null;
   replyNote.hidden = cancel.hidden = !parentId;
-  replyNote.textContent = parentId ? 'Replying to ' + (comment.signature || 'Anonymous') : '';
+  replyNote.textContent = parentId ? 'Replying to ' + (comment.signature || 'Anonymous') + ' · “' + comment.message.slice(0,100) + (comment.message.length>100?'…':'') + '”' : '';
   form.querySelector('[type="submit"]').textContent = parentId ? 'Post reply' : 'Post comment';
   if (parentId) messageInput.focus();
  }
  cancel.addEventListener('click', () => {chooseParent(null); messageInput.focus();});
  function draw(rows, fresh) {
   function entry(comment) {
-   const item = document.createElement('li');
-   const message = document.createElement('p');
-   message.textContent = comment.message;
-   const signature = document.createElement('span');
-   signature.className = 'comment-signature' + (comment.id === fresh ? ' reveal' : '');
-   signature.textContent = '— ' + (comment.signature || 'Anonymous');
-   item.append(message, signature);
-   return item;
+   const item=document.createElement('li');item.id=comment.id;item.className='comment-entry';
+   const header=document.createElement('div');header.className='comment-person';const avatar=document.createElement('span');avatar.className='comment-avatar';avatar.setAttribute('aria-hidden','true');avatar.textContent=(comment.signature||'?').trim().slice(0,1).toUpperCase();const signature=document.createElement('span');signature.className='comment-signature'+(comment.id===fresh?' reveal':'');signature.textContent=comment.signature||'Anonymous';header.append(avatar,signature);
+   if(comment.createdAt&&!Number.isNaN(Date.parse(comment.createdAt))){const time=document.createElement('time');time.dateTime=comment.createdAt;time.textContent=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short'}).format(new Date(comment.createdAt));time.title=new Date(comment.createdAt).toLocaleString();header.append(time);}item.append(header);
+   if(comment.replyToId){const context=document.createElement('a');context.className='comment-to';context.href='#'+comment.replyToId;context.textContent='↳ Replying to '+(comment.replyToSignature||'Anonymous');item.append(context);}
+   const message=document.createElement('p');message.className='comment-message';message.textContent=comment.message;item.append(message);
+   const reply=document.createElement('button');reply.type='button';reply.className='comment-reply';reply.textContent='↩ Reply';reply.setAttribute('aria-label','Reply to '+(comment.signature||'Anonymous'));reply.addEventListener('click',()=>chooseParent(comment));item.append(reply);return item;
   }
-  list.replaceChildren(...rows.filter(comment => !comment.parentId).map(comment => {
-   const item = entry(comment);
-   const reply = document.createElement('button');
-   reply.type = 'button';
-   reply.className = 'comment-reply';
-   reply.textContent = 'Reply';
-   reply.setAttribute('aria-label', 'Reply to ' + (comment.signature || 'Anonymous'));
-   reply.addEventListener('click', () => chooseParent(comment));
-   item.append(reply);
-   const replies = rows.filter(row => row.parentId === comment.id);
-   if (replies.length) {
-    const thread = document.createElement('ol');
-    thread.className = 'comment-list comment-thread';
-    thread.setAttribute('aria-label', 'Replies');
-    thread.append(...replies.map(entry));
-    item.append(thread);
-   }
-   return item;
-  }));
+  const roots=rows.filter(comment=>!comment.parentId);list.replaceChildren(...roots.map(comment=>{const item=entry(comment);const replies=rows.filter(row=>row.parentId===comment.id);if(replies.length){const disclosure=document.createElement('details');disclosure.className='comment-conversation';disclosure.open=true;const summary=document.createElement('summary');summary.textContent=replies.length+' '+(replies.length===1?'reply':'replies');const thread=document.createElement('ol');thread.className='comment-list comment-thread';thread.setAttribute('aria-label','Replies to '+(comment.signature||'Anonymous'));thread.append(...replies.map(entry));disclosure.append(summary,thread);item.append(disclosure);}return item;}));
+  let count=comments.querySelector('.comment-count');if(!count){count=document.createElement('span');count.className='comment-count';comments.querySelector('h2')?.append(count);}count.textContent=' '+rows.length;
  }
  async function request(options) {
   const response = await fetch(url, options);

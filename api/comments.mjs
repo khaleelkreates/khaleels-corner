@@ -25,8 +25,8 @@ export default async function handler(req,res) {
    const {exists,roots}=await query(`{
     "exists":defined(*[_type=="reflection" && slug.current==$story][0]._id),
     "roots":*[_type=="storyComment" && story==$story && hidden!=true && !defined(parentId)]|order(_createdAt desc)[0...100]{
-     "id":_id,message,signature,
-     "replies":*[_type=="storyComment" && story==$story && hidden!=true && parentId==^._id]|order(_createdAt asc)[0...100]{"id":_id,message,signature,parentId}
+     "id":_id,message,signature,"createdAt":_createdAt,
+     "replies":*[_type=="storyComment" && story==$story && hidden!=true && parentId==^._id]|order(_createdAt asc)[0...100]{"id":_id,message,signature,parentId,replyToId,replyToSignature,"createdAt":_createdAt}
     }
    }`,{story});
    if(!exists) return res.status(404).json({error:'Story unavailable'});
@@ -41,13 +41,14 @@ export default async function handler(req,res) {
   if(parentId!==null && (typeof parentId!=='string'||!/^comment-[a-f0-9-]{36}$/.test(parentId))) return res.status(400).json({error:'Invalid reply'});
   const {exists,parent}=await query(`{
    "exists":defined(*[_type=="reflection" && slug.current==$story][0]._id),
-   "parent":defined(*[_type=="storyComment" && _id==$parentId && story==$story && hidden!=true && !defined(parentId)][0]._id)
+   "parent":*[_type=="storyComment" && _id==$parentId && story==$story && hidden!=true][0]{"id":_id,parentId,signature}
   }`,{story,parentId});
   if(!exists||parentId&&!parent) return res.status(404).json({error:'Story or comment unavailable'});
+  if(parent?.parentId){const visibleRoot=await query('defined(*[_type=="storyComment" && _id==$root && story==$story && hidden!=true && !defined(parentId)][0]._id)',{story,root:parent.parentId});if(!visibleRoot)return res.status(404).json({error:'Conversation unavailable'});}
   // A time bucket allows one write per visitor per minute without storing raw IP addresses.
   const ip = req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown';
   const bucket = createHmac('sha256',token).update(ip+'|'+Math.floor(Date.now()/60000)).digest('hex');
-  const comment = {id:'comment-'+randomUUID(),message:message.trim(),signature:signature.trim(),...(parentId?{parentId}:{})};
+  const comment = {id:'comment-'+randomUUID(),message:message.trim(),signature:signature.trim(),...(parentId?{parentId:parent.parentId||parent.id,...(parent.parentId?{replyToId:parent.id,replyToSignature:parent.signature||''}:{})}:{})};
   const {id,...fields}=comment;
   const response = await fetch(api+'/mutate/'+project.dataset+'?visibility=sync',{
    method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
