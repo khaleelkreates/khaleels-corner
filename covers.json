@@ -183,14 +183,11 @@
     "bytes": 204090
   },
   "nothing-i-just-like-you": {
-    "slug": "nothing-i-just-like-you",
-    "image": "images/covers/curated/nothing-i-just-like-you-muslim-couple.jpg",
-    "alt": "A woman in a white hijab resting her head on her partner’s shoulder",
-    "credit": "Photo by Febry Arya · Pexels",
-    "source": "https://images.pexels.com/photos/6639380/pexels-photo-6639380.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "sourcePage": "https://www.pexels.com/photo/a-woman-leaning-on-her-husband-s-shoulder-6639380/",
-    "license": "https://www.pexels.com/license/",
-    "sanityAssetId": "image-82491f5ef2e825cadc40c14d1e05dd963c76e670-1200x1600-jpg",
-    "sanityUrl": "https://cdn.sanity.io/images/nlzgbij6/production/82491f5ef2e825cadc40c14d1e05dd963c76e670-1200x1600.jpg"
+    "image": "images/covers/curated/nothing-i-just-like-you-generated-couple.jpg",
+    "alt": "An illustrated couple with warm brown skin sitting together, a woman in a cream hijab and loose sage outfit resting her head on her partner’s shoulder",
+    "credit": "AI-generated illustration · Fictional couple",
+    "source": "AI-generated with the built-in image generation tool",
+    "sanityAssetId": "image-81697f3ecdb1944717750d185524cfe27c9ecb17-1536x1024-jpg",
+    "sanityUrl": "https://cdn.sanity.io/images/nlzgbij6/production/81697f3ecdb1944717750d185524cfe27c9ecb17-1536x1024.jpg"
   }
 }
