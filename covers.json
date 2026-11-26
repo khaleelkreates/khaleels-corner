@@ -119,18 +119,32 @@
     "bytes": 285860
   },
   "small-amebo": {
-    "image": "images/covers/small-amebo.jpg",
-    "alt": "A yellow minibus travelling along a busy Lagos street",
-    "source": "https://images.pexels.com/photos/37837067/pexels-photo-37837067.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "credit": "Cover photograph · Pexels",
-    "license": "https://www.pexels.com/license/"
+    "slug": "small-amebo",
+    "id": "1618434772352-4e2ac5d9d0a4",
+    "image": "images/covers/curated/small-amebo.webp",
+    "source": "https://images.unsplash.com/photo-1618434772352-4e2ac5d9d0a4?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/l62A4-H566Y",
+    "author": "Ayoola Salako",
+    "alt": "Skaters beside a yellow commercial bus on a Lagos street",
+    "credit": "Photo by Ayoola Salako · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 155918,
+    "sanityAssetId": "image-10a78cf984dc4a37f9e0f4ecd49b6b387f07dfcc-1400x788-webp",
+    "sanityUrl": "https://cdn.sanity.io/images/nlzgbij6/production/10a78cf984dc4a37f9e0f4ecd49b6b387f07dfcc-1400x788.webp"
   },
   "love-for-lagos": {
-    "image": "images/covers/love-for-lagos.jpg",
-    "alt": "A yellow danfo bus on a Lagos street",
-    "source": "https://images.pexels.com/photos/37567064/pexels-photo-37567064.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "credit": "Cover photograph · Pexels",
-    "license": "https://www.pexels.com/license/"
+    "slug": "love-for-lagos",
+    "id": "1526735334552-daff0bd6d53f",
+    "image": "images/covers/curated/love-for-lagos.webp",
+    "source": "https://images.unsplash.com/photo-1526735334552-daff0bd6d53f?fm=webp&w=1200&h=900&q=65&fit=max",
+    "sourcePage": "https://unsplash.com/photos/pwMCmK_6-OI",
+    "author": "Dami Akinbode",
+    "alt": "Yellow danfo buses parked beside a road in Lagos",
+    "credit": "Photo by Dami Akinbode · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 230598,
+    "sanityAssetId": "image-68111727251e7d22200a093f18aa7e709b757c52-1200x800-webp",
+    "sanityUrl": "https://cdn.sanity.io/images/nlzgbij6/production/68111727251e7d22200a093f18aa7e709b757c52-1200x800.webp"
   },
   "delay-is-not-denial": {
     "slug": "delay-is-not-denial",
@@ -170,14 +184,13 @@
   },
   "nothing-i-just-like-you": {
     "slug": "nothing-i-just-like-you",
-    "id": "1563203156-aec33354ff15",
-    "image": "images/covers/curated/nothing-i-just-like-you.webp",
-    "source": "https://images.unsplash.com/photo-1563203156-aec33354ff15?fm=webp&w=1400&h=1000&q=74&fit=max",
-    "sourcePage": "https://unsplash.com/photos/v0hTsRfLAOw",
-    "author": "Chichi Onyekanne",
-    "alt": "Two people holding hands in warm sunrise light",
-    "credit": "Photo by Chichi Onyekanne · Unsplash",
-    "license": "https://unsplash.com/license",
-    "bytes": 120490
+    "image": "images/covers/curated/nothing-i-just-like-you-muslim-couple.jpg",
+    "alt": "A woman in a white hijab resting her head on her partner’s shoulder",
+    "credit": "Photo by Febry Arya · Pexels",
+    "source": "https://images.pexels.com/photos/6639380/pexels-photo-6639380.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "sourcePage": "https://www.pexels.com/photo/a-woman-leaning-on-her-husband-s-shoulder-6639380/",
+    "license": "https://www.pexels.com/license/",
+    "sanityAssetId": "image-82491f5ef2e825cadc40c14d1e05dd963c76e670-1200x1600-jpg",
+    "sanityUrl": "https://cdn.sanity.io/images/nlzgbij6/production/82491f5ef2e825cadc40c14d1e05dd963c76e670-1200x1600.jpg"
   }
 }
