@@ -14,11 +14,16 @@
     "license": "https://unsplash.com/license"
   },
   "let-it-go": {
-    "image": "images/covers/let-it-go.webp",
-    "alt": "Waves washing onto an open shoreline",
-    "source": "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "let-it-go",
+    "id": "1793047917524-d3f28871f8fc",
+    "image": "images/covers/curated/let-it-go.webp",
+    "source": "https://images.unsplash.com/photo-1793047917524-d3f28871f8fc?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/Yi2eBNtjxaI",
+    "author": "Liana S",
+    "alt": "Yellow autumn leaves falling through a softly lit forest",
+    "credit": "Photo by Liana S · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 84276
   },
   "back-to-life": {
     "image": "images/covers/back-to-life.webp",
@@ -28,73 +33,171 @@
     "license": "https://unsplash.com/license"
   },
   "locked-in-kpa": {
-    "image": "images/covers/locked-in-kpa.webp",
-    "alt": "A laptop, cup and notebook on a wooden desk",
-    "source": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "locked-in-kpa",
+    "id": "1760561993801-be54ba0ed1dc",
+    "image": "images/covers/curated/locked-in-kpa.webp",
+    "source": "https://images.unsplash.com/photo-1760561993801-be54ba0ed1dc?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/pumhp8qcL-w",
+    "author": "Iuliia Pilipeichenko",
+    "alt": "A hand holding a pencil over an open notebook",
+    "credit": "Photo by Iuliia Pilipeichenko · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 123804
   },
   "not-everything-needs-an-audience": {
-    "image": "images/covers/not-everything-needs-an-audience.webp",
-    "alt": "A fountain pen writing on a lined page",
-    "source": "https://images.unsplash.com/photo-1455390582262-044cdead277a?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "not-everything-needs-an-audience",
+    "id": "1649794349004-d6c8ddf347d3",
+    "image": "images/covers/curated/not-everything-needs-an-audience.webp",
+    "source": "https://images.unsplash.com/photo-1649794349004-d6c8ddf347d3?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/tlptXUd0nmU",
+    "author": "Andrea De Santis",
+    "alt": "A wooden bench in a quiet light-filled gallery",
+    "credit": "Photo by Andrea De Santis · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 45578
   },
   "no-reward-for-suffer-head": {
-    "image": "images/covers/no-reward-for-suffer-head.webp",
-    "alt": "A shared working table with laptops and notebooks",
-    "source": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "no-reward-for-suffer-head",
+    "id": "1768428581300-157f55d32cc2",
+    "image": "images/covers/curated/no-reward-for-suffer-head.webp",
+    "source": "https://images.unsplash.com/photo-1768428581300-157f55d32cc2?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/9Aydl0tpsas",
+    "author": "Manuel Chinchilla",
+    "alt": "An open notebook and pen resting across a laptop keyboard",
+    "credit": "Photo by Manuel Chinchilla · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 88526
   },
   "time-leaves-clues": {
-    "image": "images/covers/time-leaves-clues.webp",
-    "alt": "Sunrise over a layered mountain horizon",
-    "source": "https://images.unsplash.com/photo-1500534623283-312aade485b7?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "time-leaves-clues",
+    "id": "1763318188790-fd36a659ae43",
+    "image": "images/covers/curated/time-leaves-clues.webp",
+    "source": "https://images.unsplash.com/photo-1763318188790-fd36a659ae43?fm=webp&w=1200&h=900&q=65&fit=max",
+    "sourcePage": "https://unsplash.com/photos/mPmips2hYd0",
+    "author": "Gabriela",
+    "alt": "Aged notebook pages covered with handwritten notes",
+    "credit": "Photo by Gabriela · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 246838
   },
   "the-girl-in-my-dreams": {
-    "image": "images/covers/the-girl-in-my-dreams.webp",
-    "alt": "A dreamlike sunrise over a misty landscape",
-    "source": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "the-girl-in-my-dreams",
+    "id": "1638729668912-d3b54fedcf53",
+    "image": "images/covers/curated/the-girl-in-my-dreams.webp",
+    "source": "https://images.unsplash.com/photo-1638729668912-d3b54fedcf53?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/AzPhNPm710c",
+    "author": "Serena Naclerio",
+    "alt": "A full moon seen through a dark window at night",
+    "credit": "Photo by Serena Naclerio · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 16744
   },
   "life-don-already-start": {
-    "image": "images/covers/life-don-already-start.webp",
-    "alt": "Sunlit mountain peaks and a wide horizon",
-    "source": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "life-don-already-start",
+    "id": "1495474472287-4d71bcdd2085",
+    "image": "images/covers/curated/life-don-already-start.webp",
+    "source": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/6VhPY27jdps",
+    "author": "Nathan Dumlao",
+    "alt": "Hands raising cups of coffee together",
+    "credit": "Photo by Nathan Dumlao · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 132486
   },
   "happiness-is-free": {
-    "image": "images/covers/happiness-is-free.webp",
-    "alt": "Golden light breaking over mountain ridges",
-    "source": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "happiness-is-free",
+    "id": "1574302833650-e91c6ec31969",
+    "image": "images/covers/curated/happiness-is-free.webp",
+    "source": "https://images.unsplash.com/photo-1574302833650-e91c6ec31969?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/aZQl6O07P4c",
+    "author": "Wesley Tingey",
+    "alt": "A Ferris wheel beneath a purple evening sky",
+    "credit": "Photo by Wesley Tingey · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 59314
   },
   "que-sera": {
-    "image": "images/covers/que-sera.webp",
-    "alt": "A wooden cabin beside a lake beneath misty mountains",
-    "source": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?fm=webp&w=1200&q=78&fit=crop",
-    "credit": "Cover photograph · Unsplash",
-    "license": "https://unsplash.com/license"
+    "slug": "que-sera",
+    "id": "1768211514586-56051cb5a7c9",
+    "image": "images/covers/curated/que-sera.webp",
+    "source": "https://images.unsplash.com/photo-1768211514586-56051cb5a7c9?fm=webp&w=1200&h=900&q=65&fit=max",
+    "sourcePage": "https://unsplash.com/photos/uNHSA8-V0Kk",
+    "author": "Bhanu Singh",
+    "alt": "Two pedestrians walking across a zebra crossing",
+    "credit": "Photo by Bhanu Singh · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 285860
   },
   "small-amebo": {
-    "image": "images/covers/small-amebo.jpg",
-    "alt": "A yellow minibus travelling along a busy Lagos street",
-    "source": "https://images.pexels.com/photos/37837067/pexels-photo-37837067.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "credit": "Cover photograph · Pexels",
-    "license": "https://www.pexels.com/license/"
+    "slug": "small-amebo",
+    "id": "1618434772352-4e2ac5d9d0a4",
+    "image": "images/covers/curated/small-amebo.webp",
+    "source": "https://images.unsplash.com/photo-1618434772352-4e2ac5d9d0a4?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/l62A4-H566Y",
+    "author": "Ayoola Salako",
+    "alt": "Skaters beside a yellow commercial bus on a Lagos street",
+    "credit": "Photo by Ayoola Salako · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 155918
   },
   "love-for-lagos": {
-    "image": "images/covers/love-for-lagos.jpg",
-    "alt": "A yellow danfo bus on a Lagos street",
-    "source": "https://images.pexels.com/photos/37567064/pexels-photo-37567064.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "credit": "Cover photograph · Pexels",
-    "license": "https://www.pexels.com/license/"
+    "slug": "love-for-lagos",
+    "id": "1526735334552-daff0bd6d53f",
+    "image": "images/covers/curated/love-for-lagos.webp",
+    "source": "https://images.unsplash.com/photo-1526735334552-daff0bd6d53f?fm=webp&w=1200&h=900&q=65&fit=max",
+    "sourcePage": "https://unsplash.com/photos/pwMCmK_6-OI",
+    "author": "Dami Akinbode",
+    "alt": "Yellow danfo buses parked beside a road in Lagos",
+    "credit": "Photo by Dami Akinbode · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 230598
+  },
+  "delay-is-not-denial": {
+    "slug": "delay-is-not-denial",
+    "id": "1753620033339-0caedb79ce03",
+    "image": "images/covers/curated/delay-is-not-denial.webp",
+    "source": "https://images.unsplash.com/photo-1753620033339-0caedb79ce03?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/jRKOG8ZJLI0",
+    "author": "Milad Fakurian",
+    "alt": "An hourglass marking the passage of time on a desk",
+    "credit": "Photo by Milad Fakurian · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 47062
+  },
+  "i-am-proud-of-you": {
+    "slug": "i-am-proud-of-you",
+    "id": "1678486172990-933215561943",
+    "image": "images/covers/curated/i-am-proud-of-you.webp",
+    "source": "https://images.unsplash.com/photo-1678486172990-933215561943?fm=webp&w=1200&h=900&q=65&fit=max",
+    "sourcePage": "https://unsplash.com/photos/MhZQBIX9GbY",
+    "author": "Eric Prouzet",
+    "alt": "Small green plants growing between weathered grey rocks",
+    "credit": "Photo by Eric Prouzet · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 237072
+  },
+  "its-everyones-first-time": {
+    "slug": "its-everyones-first-time",
+    "id": "1766342757985-88e25021ba89",
+    "image": "images/covers/curated/its-everyones-first-time.webp",
+    "source": "https://images.unsplash.com/photo-1766342757985-88e25021ba89?fm=webp&w=800&h=600&q=55&fit=max",
+    "sourcePage": "https://unsplash.com/photos/Vmco1vGwJM0",
+    "author": "Zed Can",
+    "alt": "A winding woodland path covered with fallen leaves",
+    "credit": "Photo by Zed Can · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 204090
+  },
+  "nothing-i-just-like-you": {
+    "slug": "nothing-i-just-like-you",
+    "id": "1563203156-aec33354ff15",
+    "image": "images/covers/curated/nothing-i-just-like-you.webp",
+    "source": "https://images.unsplash.com/photo-1563203156-aec33354ff15?fm=webp&w=1400&h=1000&q=74&fit=max",
+    "sourcePage": "https://unsplash.com/photos/v0hTsRfLAOw",
+    "author": "Chichi Onyekanne",
+    "alt": "Two people holding hands in warm sunrise light",
+    "credit": "Photo by Chichi Onyekanne · Unsplash",
+    "license": "https://unsplash.com/license",
+    "bytes": 120490
   }
 }
