@@ -33,16 +33,11 @@
     "license": "https://unsplash.com/license"
   },
   "locked-in-kpa": {
-    "slug": "locked-in-kpa",
-    "id": "1760561993801-be54ba0ed1dc",
-    "image": "images/covers/curated/locked-in-kpa.webp",
-    "source": "https://images.unsplash.com/photo-1760561993801-be54ba0ed1dc?fm=webp&w=1400&h=1000&q=74&fit=max",
-    "sourcePage": "https://unsplash.com/photos/pumhp8qcL-w",
-    "author": "Iuliia Pilipeichenko",
-    "alt": "A hand holding a pencil over an open notebook",
-    "credit": "Photo by Iuliia Pilipeichenko · Unsplash",
-    "license": "https://unsplash.com/license",
-    "bytes": 123804
+    "image": "images/covers/locked-in-kpa.webp",
+    "alt": "A laptop, cup and notebook on a wooden desk",
+    "source": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
   },
   "not-everything-needs-an-audience": {
     "slug": "not-everything-needs-an-audience",
@@ -57,16 +52,11 @@
     "bytes": 45578
   },
   "no-reward-for-suffer-head": {
-    "slug": "no-reward-for-suffer-head",
-    "id": "1768428581300-157f55d32cc2",
-    "image": "images/covers/curated/no-reward-for-suffer-head.webp",
-    "source": "https://images.unsplash.com/photo-1768428581300-157f55d32cc2?fm=webp&w=1400&h=1000&q=74&fit=max",
-    "sourcePage": "https://unsplash.com/photos/9Aydl0tpsas",
-    "author": "Manuel Chinchilla",
-    "alt": "An open notebook and pen resting across a laptop keyboard",
-    "credit": "Photo by Manuel Chinchilla · Unsplash",
-    "license": "https://unsplash.com/license",
-    "bytes": 88526
+    "image": "images/covers/no-reward-for-suffer-head.webp",
+    "alt": "A shared working table with laptops and notebooks",
+    "source": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?fm=webp&w=1200&q=78&fit=crop",
+    "credit": "Cover photograph · Unsplash",
+    "license": "https://unsplash.com/license"
   },
   "time-leaves-clues": {
     "slug": "time-leaves-clues",
@@ -129,28 +119,18 @@
     "bytes": 285860
   },
   "small-amebo": {
-    "slug": "small-amebo",
-    "id": "1618434772352-4e2ac5d9d0a4",
-    "image": "images/covers/curated/small-amebo.webp",
-    "source": "https://images.unsplash.com/photo-1618434772352-4e2ac5d9d0a4?fm=webp&w=1400&h=1000&q=74&fit=max",
-    "sourcePage": "https://unsplash.com/photos/l62A4-H566Y",
-    "author": "Ayoola Salako",
-    "alt": "Skaters beside a yellow commercial bus on a Lagos street",
-    "credit": "Photo by Ayoola Salako · Unsplash",
-    "license": "https://unsplash.com/license",
-    "bytes": 155918
+    "image": "images/covers/small-amebo.jpg",
+    "alt": "A yellow minibus travelling along a busy Lagos street",
+    "source": "https://images.pexels.com/photos/37837067/pexels-photo-37837067.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "credit": "Cover photograph · Pexels",
+    "license": "https://www.pexels.com/license/"
   },
   "love-for-lagos": {
-    "slug": "love-for-lagos",
-    "id": "1526735334552-daff0bd6d53f",
-    "image": "images/covers/curated/love-for-lagos.webp",
-    "source": "https://images.unsplash.com/photo-1526735334552-daff0bd6d53f?fm=webp&w=1200&h=900&q=65&fit=max",
-    "sourcePage": "https://unsplash.com/photos/pwMCmK_6-OI",
-    "author": "Dami Akinbode",
-    "alt": "Yellow danfo buses parked beside a road in Lagos",
-    "credit": "Photo by Dami Akinbode · Unsplash",
-    "license": "https://unsplash.com/license",
-    "bytes": 230598
+    "image": "images/covers/love-for-lagos.jpg",
+    "alt": "A yellow danfo bus on a Lagos street",
+    "source": "https://images.pexels.com/photos/37567064/pexels-photo-37567064.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "credit": "Cover photograph · Pexels",
+    "license": "https://www.pexels.com/license/"
   },
   "delay-is-not-denial": {
     "slug": "delay-is-not-denial",
